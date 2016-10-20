@@ -8,10 +8,38 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.a34011_73_01.corbeau_project.MainActivity">
+    tools:context="com.example.a34011_73_01.corbeau_project.MainActivity"
+    android:background="@drawable/menu">
 
-    <TextView
+    <Button
+        android:text="Crédit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
+        android:id="@+id/credit"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/quit"
+        android:layout_toStartOf="@+id/quit" />
+
+    <Button
+        android:text="Quit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/quit"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="New Game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/newGame"
+        android:layout_marginRight="45dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="15dp"
+        android:layout_above="@+id/credit"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

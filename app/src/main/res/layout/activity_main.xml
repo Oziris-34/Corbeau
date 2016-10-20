@@ -12,7 +12,7 @@
     android:background="@drawable/menu">
 
     <Button
-        android:text="Crédit"
+        android:text="@string/app_menu_button_credits"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="16dp"
@@ -23,7 +23,7 @@
         android:layout_toStartOf="@+id/quit" />
 
     <Button
-        android:text="Quit"
+        android:text="@string/app_menu_button_quit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/quit"
@@ -32,7 +32,7 @@
         android:layout_alignParentEnd="true" />
 
     <Button
-        android:text="New Game"
+        android:text="@string/app_menu_button_newgame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/newGame"

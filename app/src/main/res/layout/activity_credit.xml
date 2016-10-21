@@ -4,57 +4,67 @@
     android:layout_height="match_parent"
     android:background="@drawable/credit">
 
-    <EditText
+    <TextView
         android:layout_width="57dp"
         android:layout_height="wrap_content"
+        android:textColor="#000000"
         android:inputType="textPersonName"
         android:text="Crédit"
         android:ems="10"
         android:id="@+id/titrecredit"
         android:layout_gravity="center"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <EditText
+        <TextView
             android:text="Projet Android formation AFPA"
             android:layout_width="276dp"
             android:layout_height="wrap_content"
+            android:textColor="#000000"
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/textcredit"
             android:layout_marginLeft="35dp"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp" />
 
-        <EditText
+        <TextView
             android:text="10-2016"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="89dp"
+            android:layout_height="match_parent"
+            android:textColor="#000000"
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/Date"
             android:clickable="false"
             android:layout_centerVertical="false"
-            android:paddingLeft="100dp" />
+            android:paddingLeft="0dp"
+            android:textStyle="bold"
+            android:layout_marginTop="15dp" />
 
 
     </LinearLayout>
-<RelativeLayout
-    android:layout_width="match_parent"
+
+    <RelativeLayout
+    android:layout_width="wrap_content"
     android:layout_height="match_parent">
 
-    <Button
-        android:text="Création"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="35dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginBottom="35dp" />
-</RelativeLayout>
+        <Button
+            android:text="Création Info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/creationButton"
+            android:layout_marginRight="34dp"
+            android:layout_marginEnd="34dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="36dp" />
+    </RelativeLayout>
 </LinearLayout>

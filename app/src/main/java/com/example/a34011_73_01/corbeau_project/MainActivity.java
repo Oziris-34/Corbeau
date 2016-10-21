@@ -27,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
         creditsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.this.finish();
+                Intent intent = new Intent(MainActivity.this, Credit.class);
+                startActivity(intent);
             }
         });
 

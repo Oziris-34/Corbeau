@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:weightSum="1">
+
+    <TextView
+        android:text="Création"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/titreCreation"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginTop="20dp"
+        android:textColor="@android:color/holo_blue_dark"
+        android:layout_gravity="center" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="178dp">
+
+        <TextView
+            android:text="Cyril OLLIER"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cyril"
+            android:textColor="@android:color/background_light"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="100dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:text="Jérémi INIMOD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/jeremi"
+            android:textColor="@android:color/background_light"
+            android:layout_marginRight="84dp"
+            android:layout_marginEnd="100dp"
+            android:layout_alignBaseline="@+id/cyril"
+            android:layout_alignBottom="@+id/cyril"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:textStyle="bold" />
+
+        <TextView
+            android:text="Site Web"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/infoJeremi"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/site"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textStyle="bold"
+            android:layout_marginBottom="15dp" />
+
+        <TextView
+            android:text="Site Web"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/infoJeremi"
+            android:textColor="@android:color/background_light"
+            android:layout_alignBaseline="@+id/infoCyril"
+            android:layout_alignBottom="@+id/infoCyril"
+            android:layout_alignLeft="@+id/jeremi"
+            android:layout_alignStart="@+id/jeremi" />
+
+        <TextView
+            android:text="Site Web"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="51dp"
+            android:id="@+id/infoCyril"
+            android:textColor="@android:color/background_light"
+            android:layout_below="@+id/cyril"
+            android:layout_alignRight="@+id/cyril"
+            android:layout_alignEnd="@+id/cyril" />
+
+        <TextView
+            android:text="Le Petit Plus !"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/infoJeremi"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:id="@+id/plus"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <TextView
+        android:text="Dédi a mon fils Gabriel qui me demandé ce jeu sur tablet..."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView11"
+        android:textColor="@android:color/darker_gray"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:text="Dessins Animé sur lequel est basé le jeu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/link"
+        android:textColor="@android:color/background_light"
+        android:layout_weight="0.13"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:text="Go Watch !"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView10"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:textColor="@android:color/background_light" />
+</LinearLayout>

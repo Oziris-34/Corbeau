@@ -1,25 +1,7 @@
 package com.example.a34011_73_01.corbeau_project;
 
-import android.content.res.Resources;
-import android.graphics.Canvas;
-import android.graphics.Point;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
-import android.media.ImageReader;
 import android.os.Bundle;
-import android.os.Process;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Layout;
-import android.util.Log;
-import android.view.Display;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.Interpolator;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.TranslateAnimation;
-import android.widget.Button;
 import android.widget.ImageView;
 
 /**
@@ -29,6 +11,7 @@ import android.widget.ImageView;
 public class GameActivity extends AppCompatActivity {
 
     private Game game;
+    private int currentPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,24 +20,143 @@ public class GameActivity extends AppCompatActivity {
 
         game = new Game();
 
+        game.setPlayer();
+
+        currentPlayer = 0;
+
+        currentPlayer = currentPlayer % 2;
+
         updateBoard();
+
+        playerTurn();
+
+        updateBoard();
+
+        currentPlayer++;
+    }
+
+    private void playerTurn() {
+        int result = game.launchDice();
+
+        switch(result) {
+            case 1: {
+                game.decRemainingGreenFruit();
+            }break;
+
+            case 2: {
+                game.decRemainingYellowFruit();
+            }break;
+
+            case 3: {
+                game.decRemainingVioletFruit();
+            }break;
+
+            case 4: {
+                game.decRemainingOrangeFruit();
+            }break;
+
+            case 5: {
+                game.incRavenPosition();
+            }break;
+
+            case 6: {
+
+            }break;
+        }
     }
 
     private void updateBoard() {
-        switch(game.getRemainingGreenFruit()) {
+        ImageView greenFruit = (ImageView)findViewById(R.id.orchardGreenFruit);
+        ImageView orangeFruit = (ImageView)findViewById(R.id.orchardOrangeFruit);
+        ImageView violetFruit = (ImageView)findViewById(R.id.orchardVioletFruit);
+        ImageView yellowFruit = (ImageView)findViewById(R.id.orchardYellowFruit);
 
+        switch(game.getRemainingGreenFruit()) {
+            case 4: {
+                greenFruit.setImageResource(R.drawable.vert_4);
+            }break;
+
+            case 3: {
+                greenFruit.setImageResource(R.drawable.vert_3);
+            }break;
+
+            case 2: {
+                greenFruit.setImageResource(R.drawable.vert_2);
+            }break;
+
+            case 1: {
+                greenFruit.setImageResource(R.drawable.vert_1);
+            }break;
+
+            default: {
+
+            }break;
         }
 
         switch(game.getRemainingOrangeFruit()) {
+            case 4: {
+                orangeFruit.setImageResource(R.drawable.orange_4);
+            }break;
 
+            case 3: {
+                orangeFruit.setImageResource(R.drawable.orange_3);
+            }break;
+
+            case 2: {
+                orangeFruit.setImageResource(R.drawable.orange_2);
+            }break;
+
+            case 1: {
+                orangeFruit.setImageResource(R.drawable.orange_1);
+            }break;
+
+            default: {
+
+            }break;
         }
 
         switch(game.getRemainingVioletFruit()) {
+            case 4: {
+                violetFruit.setImageResource(R.drawable.violet_4);
+            }break;
 
+            case 3: {
+                violetFruit.setImageResource(R.drawable.violet_3);
+            }break;
+
+            case 2: {
+                violetFruit.setImageResource(R.drawable.violet_2);
+            }break;
+
+            case 1: {
+                violetFruit.setImageResource(R.drawable.violet_1);
+            }break;
+
+            default: {
+
+            }break;
         }
 
         switch(game.getRemainingYellowFruit()) {
+            case 4: {
+                yellowFruit.setImageResource(R.drawable.rouge_4);
+            }break;
 
+            case 3: {
+                yellowFruit.setImageResource(R.drawable.rouge_3);
+            }break;
+
+            case 2: {
+                yellowFruit.setImageResource(R.drawable.rouge_2);
+            }break;
+
+            case 1: {
+                yellowFruit.setImageResource(R.drawable.rouge_1);
+            }break;
+
+            default: {
+
+            }break;
         }
 
         switch(game.getRavenPosition()) {

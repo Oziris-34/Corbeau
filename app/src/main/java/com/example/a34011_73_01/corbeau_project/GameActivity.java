@@ -18,6 +18,9 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        ImageView harvestFruit = (ImageView)findViewById(R.id.harvestFruit);
+        harvestFruit.setImageResource(R.drawable.recolte_fruit);
+
         game = new Game();
 
         game.setPlayer();

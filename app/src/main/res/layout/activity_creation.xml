@@ -60,28 +60,6 @@
             android:layout_marginBottom="15dp" />
 
         <TextView
-            android:text="Site Web"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/infoJeremi"
-            android:textColor="@android:color/background_light"
-            android:layout_alignBaseline="@+id/infoCyril"
-            android:layout_alignBottom="@+id/infoCyril"
-            android:layout_alignLeft="@+id/jeremi"
-            android:layout_alignStart="@+id/jeremi" />
-
-        <TextView
-            android:text="Site Web"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="51dp"
-            android:id="@+id/infoCyril"
-            android:textColor="@android:color/background_light"
-            android:layout_below="@+id/cyril"
-            android:layout_alignRight="@+id/cyril"
-            android:layout_alignEnd="@+id/cyril" />
-
-        <TextView
             android:text="Le Petit Plus !"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -91,6 +69,25 @@
             android:id="@+id/plus"
             android:textColor="@android:color/holo_blue_dark"
             android:textStyle="bold" />
+
+        <Button
+            android:text="Site Web"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/infoCyril"
+            android:layout_centerVertical="true"
+            android:layout_alignLeft="@+id/cyril"
+            android:layout_alignStart="@+id/cyril" />
+
+        <Button
+            android:text="Site Web"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/infoJeremi"
+            android:layout_alignBaseline="@+id/infoCyril"
+            android:layout_alignBottom="@+id/infoCyril"
+            android:layout_alignLeft="@+id/jeremi"
+            android:layout_alignStart="@+id/jeremi" />
     </RelativeLayout>
 
     <TextView
@@ -111,12 +108,12 @@
         android:layout_gravity="center"
         android:layout_marginTop="15dp" />
 
-    <TextView
+    <Button
         android:text="Go Watch !"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView10"
-        android:layout_marginTop="20dp"
+        android:id="@+id/animationWeb"
         android:layout_gravity="center"
-        android:textColor="@android:color/background_light" />
+        android:layout_marginTop="15dp" />
+
 </LinearLayout>

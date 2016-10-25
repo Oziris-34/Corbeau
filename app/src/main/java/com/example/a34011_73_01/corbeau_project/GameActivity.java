@@ -22,8 +22,9 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-
+        /*
         greenFruit = (ImageView)findViewById(R.id.orchardGreenFruit);
+
         orangeFruit = (ImageView)findViewById(R.id.orchardOrangeFruit);
         violetFruit = (ImageView)findViewById(R.id.orchardVioletFruit);
         yellowFruit = (ImageView)findViewById(R.id.orchardYellowFruit);
@@ -36,13 +37,14 @@ public class GameActivity extends AppCompatActivity {
 
         currentPlayer = currentPlayer % 2;
 
-        updateBoard();
+        //updateBoard();
 
         playerTurn();
 
-        updateBoard();
+        //updateBoard();
 
         currentPlayer++;
+        */
     }
 
     private void playerTurn() {

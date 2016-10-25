@@ -38,7 +38,6 @@ public class GameActivity extends AppCompatActivity {
         */
 
         corbeauImageView  = (ImageView)findViewById(R.id.corbeauImage);
-        corbeauImageView.setImageResource(R.drawable.corbeau);
         corbeauImageView.setScaleX(-0.4f);
         corbeauImageView.setScaleY(0.4f);
         corbeauImageView.setTranslationX(0);

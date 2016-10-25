@@ -13,13 +13,20 @@ public class GameActivity extends AppCompatActivity {
     private Game game;
     private int currentPlayer;
 
+    private ImageView greenFruit;
+    private ImageView orangeFruit;
+    private ImageView violetFruit;
+    private ImageView yellowFruit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        ImageView harvestFruit = (ImageView)findViewById(R.id.harvestFruit);
-        harvestFruit.setImageResource(R.drawable.recolte_fruit);
+        greenFruit = (ImageView)findViewById(R.id.orchardGreenFruit);
+        orangeFruit = (ImageView)findViewById(R.id.orchardOrangeFruit);
+        violetFruit = (ImageView)findViewById(R.id.orchardVioletFruit);
+        yellowFruit = (ImageView)findViewById(R.id.orchardYellowFruit);
 
         game = new Game();
 
@@ -69,10 +76,6 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void updateBoard() {
-        ImageView greenFruit = (ImageView)findViewById(R.id.orchardGreenFruit);
-        ImageView orangeFruit = (ImageView)findViewById(R.id.orchardOrangeFruit);
-        ImageView violetFruit = (ImageView)findViewById(R.id.orchardVioletFruit);
-        ImageView yellowFruit = (ImageView)findViewById(R.id.orchardYellowFruit);
 
         switch(game.getRemainingGreenFruit()) {
             case 4: {

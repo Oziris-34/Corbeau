@@ -2,6 +2,7 @@ package com.example.a34011_73_01.corbeau_project;
 
 import android.content.res.Resources;
 import android.graphics.Canvas;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
@@ -11,9 +12,13 @@ import android.os.Process;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Layout;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.Interpolator;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -23,34 +28,37 @@ import android.widget.ImageView;
 
 public class GameActivity extends AppCompatActivity {
 
-    private ImageView corbeauImageView;
-    private Animation corbeauAnimation;
+    private Game game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        ImageView orchardImageView = (ImageView)findViewById(R.id.orchardBackground);
-        /*
-        Drawable corbeauDrawable = getResources().getDrawable(R.drawable.corbeau);
-        corbeauDrawable.setBounds(corbeauDrawable.getBounds());
-        */
+        game = new Game();
 
-        corbeauImageView  = (ImageView)findViewById(R.id.corbeauImage);
-        corbeauImageView.setScaleX(-0.4f);
-        corbeauImageView.setScaleY(0.4f);
-        corbeauImageView.setTranslationX(0);
-        corbeauImageView.setTranslationY(160);
+        updateBoard();
+    }
 
-        corbeauAnimation = (Animation) AnimationUtils.loadAnimation(getApplicationContext(), R.anim.corbeau_anim);
+    private void updateBoard() {
+        switch(game.getRemainingGreenFruit()) {
 
-        orchardImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("DEBUG", "Orchard Clicked");
-                corbeauImageView.startAnimation(corbeauAnimation);
-            }
-        });
+        }
+
+        switch(game.getRemainingOrangeFruit()) {
+
+        }
+
+        switch(game.getRemainingVioletFruit()) {
+
+        }
+
+        switch(game.getRemainingYellowFruit()) {
+
+        }
+
+        switch(game.getRavenPosition()) {
+
+        }
     }
 }

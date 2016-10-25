@@ -7,9 +7,10 @@
         android:layout_height="match_parent">
         <ImageView
             android:id="@+id/orchardBackground"
+            android:scaleType="fitXY"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/plateau"/>
+            android:src="@drawable/plateau2"/>
 
         <ImageView
             android:id="@+id/corbeauImage"

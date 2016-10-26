@@ -19,25 +19,29 @@
             android:id="@+id/orchardYellowFruit"
             android:scaleType="fitXY"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:src="@drawable/rouge4"/>
 
         <ImageView
             android:id="@+id/orchardGreenFruit"
             android:scaleType="fitXY"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:src="@drawable/vert4"/>
 
         <ImageView
             android:id="@+id/orchardVioletFruit"
             android:scaleType="fitXY"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:src="@drawable/violet4"/>
 
         <ImageView
             android:id="@+id/orchardOrangeFruit"
             android:scaleType="fitXY"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:src="@drawable/orange4"/>
 
         <ImageView
             android:id="@+id/harvestFruit"

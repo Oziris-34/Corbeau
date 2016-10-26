@@ -2,6 +2,7 @@ package com.example.a34011_73_01.corbeau_project;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ImageView;
 
 /**
@@ -10,43 +11,37 @@ import android.widget.ImageView;
 
 public class GameActivity extends AppCompatActivity {
 
-    private Game game;
-    private int currentPlayer;
-
-    private ImageView greenFruit;
-    private ImageView orangeFruit;
-    private ImageView violetFruit;
-    private ImageView yellowFruit;
+    private GameThread gameThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        /*
-        greenFruit = (ImageView)findViewById(R.id.orchardGreenFruit);
 
-        orangeFruit = (ImageView)findViewById(R.id.orchardOrangeFruit);
-        violetFruit = (ImageView)findViewById(R.id.orchardVioletFruit);
-        yellowFruit = (ImageView)findViewById(R.id.orchardYellowFruit);
-
-        game = new Game();
-
-        game.setPlayer();
-
-        currentPlayer = 0;
-
-        currentPlayer = currentPlayer % 2;
-
-        //updateBoard();
-
-        playerTurn();
-
-        //updateBoard();
-
-        currentPlayer++;
-        */
+        gameThread = new GameThread();
+        gameThread.setRunning(true);
+        gameThread.start();
     }
 
+    @Override
+    protected void onDestroy() {
+        Log.d("GameActivity", "Destroying thread!");
+        super.onDestroy();
+
+        gameThread.setRunning(false);
+
+        boolean retry = true;
+        while(retry) {
+            try {
+                gameThread.join();
+                retry = false;
+            }
+            catch(InterruptedException e) {
+                Log.d("GameActivity", "Failed to join game thread!");
+            }
+        }
+    }
+/*
     private void playerTurn() {
         int result = game.launchDice();
 
@@ -171,4 +166,5 @@ public class GameActivity extends AppCompatActivity {
 
         }
     }
+    */
 }

@@ -48,7 +48,12 @@ public class GameThread extends Thread {
             if(newTime >= TIME_RESOLUTION) {
                 Log.d("GameThread", "Game updated!");
 
-                game.doTurn();
+                if(game.getCurrentPlayer() == game.getHumanPlayerID()) {
+                    game.doTurn();
+                }
+                else {
+                    game.doTurn();
+                }
 
                 activity.get().runOnUiThread(new Runnable() {
                     @Override

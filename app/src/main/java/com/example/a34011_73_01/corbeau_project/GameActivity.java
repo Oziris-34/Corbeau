@@ -22,6 +22,8 @@ public class GameActivity extends AppCompatActivity {
     private ImageView violetFruit;
     private ImageView yellowFruit;
 
+    private ImageView raven;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +33,8 @@ public class GameActivity extends AppCompatActivity {
         orangeFruit = (ImageView)findViewById(R.id.orchardOrangeFruit);
         violetFruit = (ImageView)findViewById(R.id.orchardVioletFruit);
         yellowFruit = (ImageView)findViewById(R.id.orchardYellowFruit);
+
+        raven = (ImageView)findViewById(R.id.raven);
 
         startThreads();
     }
@@ -208,7 +212,37 @@ public class GameActivity extends AppCompatActivity {
         }
 
         switch(game.getRavenPosition()) {
+            case 8: {
+                raven.setImageDrawable(getResources().getDrawable(R.drawable.corbeau_gagne));
+            }break;
 
+            case 7: {
+                raven.setImageDrawable(getResources().getDrawable(R.drawable.corbeau6));
+            }break;
+
+            case 6: {
+                raven.setImageDrawable(getResources().getDrawable(R.drawable.corbeau5));
+            }break;
+
+            case 5: {
+                raven.setImageDrawable(getResources().getDrawable(R.drawable.corbeau4));
+            }break;
+
+            case 4: {
+                raven.setImageDrawable(getResources().getDrawable(R.drawable.corbeau3));
+            }break;
+
+            case 3: {
+                raven.setImageDrawable(getResources().getDrawable(R.drawable.corbeau2));
+            }break;
+
+            case 2: {
+                raven.setImageDrawable(getResources().getDrawable(R.drawable.corbeau1));
+            }break;
+
+            default: {
+                raven.setImageDrawable(getResources().getDrawable(R.drawable.corbeau_depart));
+            }break;
         }
     }
 }

@@ -1,5 +1,7 @@
 package com.example.a34011_73_01.corbeau_project;
 
+import android.util.Log;
+
 import java.util.Random;
 
 /**
@@ -8,6 +10,8 @@ import java.util.Random;
 
 public class Game {
     private int humanPlayerID;
+
+    private int currentPlayer;
 
     private int numFruitPlayerOne;
     private int numFruitPlayerTwo;
@@ -18,6 +22,14 @@ public class Game {
     private int remainingGreenFruit;
 
     private int ravenPosition;
+
+    public int getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public void setCurrentPlayer(int currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
 
     public int getHumanPlayerID() {
         return humanPlayerID;
@@ -114,6 +126,7 @@ public class Game {
     public Game() {
         remainingGreenFruit = remainingOrangeFruit = remainingVioletFruit = remainingYellowFruit = 4;
         numFruitPlayerOne = numFruitPlayerTwo = 0;
+        currentPlayer = 0;
         ravenPosition = 1;
     }
 
@@ -125,5 +138,48 @@ public class Game {
     public int launchDice() {
         Random random = new Random();
         return random.nextInt(6) + 1;
+    }
+
+    public void nextPlayer() {
+        currentPlayer = ++currentPlayer % 2;
+    }
+
+    public void doTurn() {
+        Log.d("Game", "PLayer_" + currentPlayer);
+
+        int result = launchDice();
+
+        switch(result) {
+            case 1: {
+                --remainingGreenFruit;
+                Log.d("Game", "Green!");
+            }break;
+
+            case 2: {
+                --remainingOrangeFruit;
+                Log.d("Game", "Orange!");
+            }break;
+
+            case 3: {
+                --remainingVioletFruit;
+                Log.d("Game", "Violet!");
+            }break;
+
+            case 4: {
+                --remainingYellowFruit;
+                Log.d("Game", "Yellow!");
+            }break;
+
+            case 5: {
+                Log.d("Game", "Skip turn!");
+            }break;
+
+            case 6: {
+                ++ravenPosition;
+                Log.d("Game", "Raven!");
+            }break;
+        }
+
+        nextPlayer();
     }
 }

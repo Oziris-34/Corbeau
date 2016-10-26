@@ -2,6 +2,7 @@ package com.example.a34011_73_01.corbeau_project;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ImageView;
 
 /**
@@ -10,31 +11,37 @@ import android.widget.ImageView;
 
 public class GameActivity extends AppCompatActivity {
 
-    private Game game;
-    private int currentPlayer;
+    private GameThread gameThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        game = new Game();
-
-        game.setPlayer();
-
-        currentPlayer = 0;
-
-        currentPlayer = currentPlayer % 2;
-
-        updateBoard();
-
-        playerTurn();
-
-        updateBoard();
-
-        currentPlayer++;
+        gameThread = new GameThread();
+        gameThread.setRunning(true);
+        gameThread.start();
     }
 
+    @Override
+    protected void onDestroy() {
+        Log.d("GameActivity", "Destroying thread!");
+        super.onDestroy();
+
+        gameThread.setRunning(false);
+
+        boolean retry = true;
+        while(retry) {
+            try {
+                gameThread.join();
+                retry = false;
+            }
+            catch(InterruptedException e) {
+                Log.d("GameActivity", "Failed to join game thread!");
+            }
+        }
+    }
+/*
     private void playerTurn() {
         int result = game.launchDice();
 
@@ -66,10 +73,6 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void updateBoard() {
-        ImageView greenFruit = (ImageView)findViewById(R.id.orchardGreenFruit);
-        ImageView orangeFruit = (ImageView)findViewById(R.id.orchardOrangeFruit);
-        ImageView violetFruit = (ImageView)findViewById(R.id.orchardVioletFruit);
-        ImageView yellowFruit = (ImageView)findViewById(R.id.orchardYellowFruit);
 
         switch(game.getRemainingGreenFruit()) {
             case 4: {
@@ -163,4 +166,5 @@ public class GameActivity extends AppCompatActivity {
 
         }
     }
+    */
 }

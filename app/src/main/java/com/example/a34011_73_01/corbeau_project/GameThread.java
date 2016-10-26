@@ -2,6 +2,7 @@ package com.example.a34011_73_01.corbeau_project;
 
 import android.os.SystemClock;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
 import java.sql.Time;
@@ -18,6 +19,8 @@ public class GameThread extends Thread {
 
     private Game game;
 
+    private boolean playerTurnDone = false;
+
     private boolean doTurn;
 
     private final static long TIME_RESOLUTION = 1000;
@@ -26,6 +29,14 @@ public class GameThread extends Thread {
         this.activity = new WeakReference<GameActivity>(activity);
         game = new Game();
         game.setPlayer();
+    }
+
+    public boolean isPlayerTurnDone() {
+        return playerTurnDone;
+    }
+
+    public void setPlayerTurnDone(boolean playerTurnDone) {
+        this.playerTurnDone = playerTurnDone;
     }
 
     public void setRunning(boolean running) {
@@ -40,18 +51,33 @@ public class GameThread extends Thread {
     public void run() {
         long oldTime = SystemClock.elapsedRealtime();
         long newTime = 0;
+        playerTurnDone = false;
 
         while(running) {
-            Log.d("GameThread", "Running game thread!");
             newTime += (SystemClock.elapsedRealtime() - oldTime);
-            Log.d("GameThread", "NewTime: " + newTime);
-            if(newTime >= TIME_RESOLUTION) {
-                Log.d("GameThread", "Game updated!");
 
+            if(newTime >= TIME_RESOLUTION) {
                 if(game.getCurrentPlayer() == game.getHumanPlayerID()) {
-                    game.doTurn();
+                    activity.get().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            activity.get().showButton();
+                        }
+                    });
+
+                    if(playerTurnDone) {
+                        game.doTurn();
+                        playerTurnDone = false;
+                    }
                 }
                 else {
+                    activity.get().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            activity.get().hideButton();
+                        }
+                    });
+
                     game.doTurn();
                 }
 
@@ -61,6 +87,18 @@ public class GameThread extends Thread {
                         activity.get().updateBoard(game);
                     }
                 });
+
+                if(game.isGameFinished()) {
+                    activity.get().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast gameFinished = Toast.makeText(activity.get().getBaseContext(), "The game is finished!", Toast.LENGTH_LONG);
+                            gameFinished.show();
+                        }
+                    });
+
+                    running = false;
+                }
 
                 oldTime = SystemClock.elapsedRealtime();
                 newTime = 0;
@@ -74,9 +112,5 @@ public class GameThread extends Thread {
                 }
             }
         }
-    }
-
-    public void doTurn() {
-
     }
 }

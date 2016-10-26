@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import java.lang.ref.WeakReference;
@@ -24,6 +26,8 @@ public class GameActivity extends AppCompatActivity {
 
     private ImageView raven;
 
+    private ImageButton de;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +39,14 @@ public class GameActivity extends AppCompatActivity {
         yellowFruit = (ImageView)findViewById(R.id.orchardYellowFruit);
 
         raven = (ImageView)findViewById(R.id.raven);
+
+        de = (ImageButton)findViewById(R.id.imageButton7);
+        de.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gameThread.setPlayerTurnDone(true);
+            }
+        });
 
         startThreads();
     }
@@ -90,6 +102,17 @@ public class GameActivity extends AppCompatActivity {
             }
         }
     }
+
+    public void showButton() {
+        de.setAlpha(1.0f);
+        de.setFocusable(true);
+    }
+
+    public void hideButton() {
+        de.setAlpha(0.0f);
+        de.setFocusable(false);
+    }
+
 /*
     private void playerTurn() {
         int result = game.launchDice();

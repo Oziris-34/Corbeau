@@ -27,8 +27,7 @@ public class GameThread extends Thread {
 
     public GameThread(GameActivity activity) {
         this.activity = new WeakReference<GameActivity>(activity);
-        game = new Game();
-        game.setPlayer();
+        game = new Game(this.activity);
     }
 
     public boolean isPlayerTurnDone() {
@@ -51,13 +50,16 @@ public class GameThread extends Thread {
     public void run() {
         long oldTime = SystemClock.elapsedRealtime();
         long newTime = 0;
+        long changeTime = 0;
         playerTurnDone = false;
+
+        game.setPlayer();
 
         while(running) {
             newTime += (SystemClock.elapsedRealtime() - oldTime);
 
             if(newTime >= TIME_RESOLUTION) {
-                if(game.getCurrentPlayer() == game.getHumanPlayerID()) {
+                if (game.getCurrentPlayer() == game.getHumanPlayerID()) {
                     activity.get().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -65,20 +67,24 @@ public class GameThread extends Thread {
                         }
                     });
 
-                    if(playerTurnDone) {
+                    if (playerTurnDone) {
                         game.doTurn();
                         playerTurnDone = false;
                     }
-                }
-                else {
-                    activity.get().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            activity.get().hideButton();
-                        }
-                    });
+                } else {
+                    changeTime += newTime;
 
-                    game.doTurn();
+                    if (changeTime >= 10000) {
+                        activity.get().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                activity.get().hideButton();
+                            }
+                        });
+
+                        game.doTurn();
+                        changeTime = 0;
+                    }
                 }
 
                 activity.get().runOnUiThread(new Runnable() {
@@ -88,11 +94,31 @@ public class GameThread extends Thread {
                     }
                 });
 
+                if(game.hasCorbackWon()) {
+                    activity.get().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast gameFinished = Toast.makeText(activity.get().getBaseContext(), "The game is finished and the raven has won, your orchard is ruined!", Toast.LENGTH_LONG);
+                            gameFinished.show();
+                        }
+                    });
+
+                    running = false;
+                }
+
                 if(game.isGameFinished()) {
                     activity.get().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast gameFinished = Toast.makeText(activity.get().getBaseContext(), "The game is finished!", Toast.LENGTH_LONG);
+                            String successfulPlayer = "";
+                            if(game.getCurrentPlayer() == game.getHumanPlayerID()) { //The computer wins because the current player is the player for the next turn
+                                successfulPlayer = " The computer has won! He gets to sell the orchard!";
+                            }
+                            else {
+                                successfulPlayer = " You have won! Your orchard is saved!";
+                            }
+
+                            Toast gameFinished = Toast.makeText(activity.get().getBaseContext(), "The game is finished!" + successfulPlayer, Toast.LENGTH_LONG);
                             gameFinished.show();
                         }
                     });
@@ -112,5 +138,6 @@ public class GameThread extends Thread {
                 }
             }
         }
+
     }
 }

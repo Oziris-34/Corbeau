@@ -70,7 +70,7 @@ public class GameActivity extends AppCompatActivity {
         gameThread.setRunning(true);
         gameThread.start();
 
-        soundThread = new SoundThread();
+        soundThread = new SoundThread(GameActivity.this);
         soundThread.setRunning(true);
         soundThread.start();
     }

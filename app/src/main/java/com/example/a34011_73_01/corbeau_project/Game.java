@@ -1,7 +1,9 @@
 package com.example.a34011_73_01.corbeau_project;
 
 import android.util.Log;
+import android.widget.Toast;
 
+import java.lang.ref.WeakReference;
 import java.util.Random;
 
 /**
@@ -9,6 +11,8 @@ import java.util.Random;
  */
 
 public class Game {
+    private WeakReference<GameActivity> activity;
+
     private int humanPlayerID;
 
     private int currentPlayer;
@@ -133,7 +137,8 @@ public class Game {
         this.playerHarvestedVioletFruit = playerHarvestedVioletFruit;
     }
 
-    public Game() {
+    public Game(WeakReference<GameActivity> activity) {
+        this.activity = activity;
         remainingGreenFruit = remainingOrangeFruit = remainingVioletFruit = remainingYellowFruit = 4;
         currentPlayer = 0;
         ravenPosition = 1;
@@ -142,6 +147,25 @@ public class Game {
     public void setPlayer() {
         Random random = new Random();
         humanPlayerID = random.nextInt(2);
+
+        if(humanPlayerID == 0) {
+            activity.get().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast message = Toast.makeText(activity.get().getBaseContext(), "You begin!", Toast.LENGTH_SHORT);
+                    message.show();
+                }
+            });
+        }
+        else {
+            activity.get().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast message = Toast.makeText(activity.get().getBaseContext(), "The computer begins!", Toast.LENGTH_SHORT);
+                    message.show();
+                }
+            });
+        }
     }
 
     public int launchDice() {
@@ -151,6 +175,25 @@ public class Game {
 
     public void nextPlayer() {
         currentPlayer = ++currentPlayer % 2;
+
+        if(currentPlayer == humanPlayerID) {
+            activity.get().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast message = Toast.makeText(activity.get().getBaseContext(), "It's your turn :)", Toast.LENGTH_SHORT);
+                    message.show();
+                }
+            });
+        }
+        else {
+            activity.get().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast message = Toast.makeText(activity.get().getBaseContext(), "It's the computer's turn :)", Toast.LENGTH_SHORT);
+                    message.show();
+                }
+            });
+        }
     }
 
     public void doTurn() {
@@ -202,6 +245,10 @@ public class Game {
         }
 
         nextPlayer();
+    }
+
+    public boolean hasCorbackWon() {
+        return (ravenPosition >= 8);
     }
 
     public boolean isGameFinished() {

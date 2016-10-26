@@ -1,5 +1,9 @@
 package com.example.a34011_73_01.corbeau_project;
 
+import android.util.Log;
+import android.widget.Toast;
+
+import java.lang.ref.WeakReference;
 import java.util.Random;
 
 /**
@@ -7,10 +11,16 @@ import java.util.Random;
  */
 
 public class Game {
+    private WeakReference<GameActivity> activity;
+
     private int humanPlayerID;
 
-    private int numFruitPlayerOne;
-    private int numFruitPlayerTwo;
+    private int currentPlayer;
+
+    private int playerHarvestedGreenFruit;
+    private int playerHarvestedOrangeFruit;
+    private int playerHarvestedYellowFruit;
+    private int playerHarvestedVioletFruit;
 
     private int remainingYellowFruit;
     private int remainingOrangeFruit;
@@ -19,36 +29,20 @@ public class Game {
 
     private int ravenPosition;
 
+    public int getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public void setCurrentPlayer(int currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
+
     public int getHumanPlayerID() {
         return humanPlayerID;
     }
 
     public void setHumanPlayerID(int humanPlayerID) {
         this.humanPlayerID = humanPlayerID;
-    }
-
-    public int getNumFruitPlayerOne() {
-        return numFruitPlayerOne;
-    }
-
-    public void setNumFruitPlayerOne(int numFruitPlayerOne) {
-        this.numFruitPlayerOne = numFruitPlayerOne;
-    }
-
-    public void incNumFruitPlayerOne() {
-        numFruitPlayerOne++;
-    }
-
-    public int getNumFruitPlayerTwo() {
-        return numFruitPlayerTwo;
-    }
-
-    public void setNumFruitPlayerTwo(int numFruitPlayerTwo) {
-        this.numFruitPlayerTwo = numFruitPlayerTwo;
-    }
-
-    public void incNumFruitPlayerTwo() {
-        numFruitPlayerTwo++;
     }
 
     public int getRemainingYellowFruit() {
@@ -111,19 +105,158 @@ public class Game {
         ravenPosition++;
     }
 
-    public Game() {
+    public int getPlayerHarvestedGreenFruit() {
+        return playerHarvestedGreenFruit;
+    }
+
+    public void setPlayerHarvestedGreenFruit(int playerHarvestedGreenFruit) {
+        this.playerHarvestedGreenFruit = playerHarvestedGreenFruit;
+    }
+
+    public int getPlayerHarvestedOrangeFruit() {
+        return playerHarvestedOrangeFruit;
+    }
+
+    public void setPlayerHarvestedOrangeFruit(int playerHarvestedOrangeFruit) {
+        this.playerHarvestedOrangeFruit = playerHarvestedOrangeFruit;
+    }
+
+    public int getPlayerHarvestedYellowFruit() {
+        return playerHarvestedYellowFruit;
+    }
+
+    public void setPlayerHarvestedYellowFruit(int playerHarvestedYellowFruit) {
+        this.playerHarvestedYellowFruit = playerHarvestedYellowFruit;
+    }
+
+    public int getPlayerHarvestedVioletFruit() {
+        return playerHarvestedVioletFruit;
+    }
+
+    public void setPlayerHarvestedVioletFruit(int playerHarvestedVioletFruit) {
+        this.playerHarvestedVioletFruit = playerHarvestedVioletFruit;
+    }
+
+    public Game(WeakReference<GameActivity> activity) {
+        this.activity = activity;
         remainingGreenFruit = remainingOrangeFruit = remainingVioletFruit = remainingYellowFruit = 4;
-        numFruitPlayerOne = numFruitPlayerTwo = 0;
+        currentPlayer = 0;
         ravenPosition = 1;
     }
 
     public void setPlayer() {
         Random random = new Random();
         humanPlayerID = random.nextInt(2);
+
+        if(humanPlayerID == 0) {
+            activity.get().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast message = Toast.makeText(activity.get().getBaseContext(), "You begin!", Toast.LENGTH_SHORT);
+                    message.show();
+                }
+            });
+        }
+        else {
+            activity.get().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast message = Toast.makeText(activity.get().getBaseContext(), "The computer begins!", Toast.LENGTH_SHORT);
+                    message.show();
+                }
+            });
+        }
     }
 
     public int launchDice() {
         Random random = new Random();
         return random.nextInt(6) + 1;
+    }
+
+    public void nextPlayer() {
+        currentPlayer = ++currentPlayer % 2;
+
+        if(currentPlayer == humanPlayerID) {
+            activity.get().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast message = Toast.makeText(activity.get().getBaseContext(), "It's your turn :)", Toast.LENGTH_SHORT);
+                    message.show();
+                }
+            });
+        }
+        else {
+            activity.get().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast message = Toast.makeText(activity.get().getBaseContext(), "It's the computer's turn :)", Toast.LENGTH_SHORT);
+                    message.show();
+                }
+            });
+        }
+    }
+
+    public void doTurn() {
+        Log.d("Game", "PLayer_" + currentPlayer);
+
+        int result = launchDice();
+
+        switch(result) {
+            case 1: {
+                --remainingGreenFruit;
+                if(currentPlayer == humanPlayerID) {
+                    ++playerHarvestedGreenFruit;
+                }
+                Log.d("Game", "Green!");
+            }break;
+
+            case 2: {
+                --remainingOrangeFruit;
+                if(currentPlayer == humanPlayerID) {
+                    ++playerHarvestedOrangeFruit;
+                }
+                Log.d("Game", "Orange!");
+            }break;
+
+            case 3: {
+                --remainingVioletFruit;
+                if(currentPlayer == humanPlayerID) {
+                    ++playerHarvestedVioletFruit;
+                }
+                Log.d("Game", "Violet!");
+            }break;
+
+            case 4: {
+                --remainingYellowFruit;
+                if(currentPlayer == humanPlayerID) {
+                    ++playerHarvestedYellowFruit;
+                }
+                Log.d("Game", "Yellow!");
+            }break;
+
+            case 5: {
+                Log.d("Game", "Skip turn!");
+            }break;
+
+            case 6: {
+                ++ravenPosition;
+                Log.d("Game", "Raven!");
+            }break;
+        }
+
+        nextPlayer();
+    }
+
+    public boolean hasCorbackWon() {
+        return (ravenPosition >= 8);
+    }
+
+    public boolean isGameFinished() {
+        boolean isYellowTreeEmpty = remainingYellowFruit <= 0;
+        boolean isGreenTreeEmpty = remainingGreenFruit <= 0;
+        boolean isVioletTreeEmpty = remainingVioletFruit <= 0;
+        boolean isOrangeTreeEmpty = remainingOrangeFruit <= 0;
+
+        return (isGreenTreeEmpty || isOrangeTreeEmpty || isVioletTreeEmpty || isYellowTreeEmpty);
     }
 }

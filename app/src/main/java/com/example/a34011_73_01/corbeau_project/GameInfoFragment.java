@@ -59,32 +59,6 @@ public class GameInfoFragment extends Fragment {
                 }
             }
         });
-
-        Drawable orchard = getView().getResources().getDrawable(R.drawable.plateau2);
-        Drawable corback = getView().getResources().getDrawable(R.drawable.corbeau1);
-
-        Bitmap result = BitmapBlending.blend(((BitmapDrawable)orchard).getBitmap(), ((BitmapDrawable)corback).getBitmap());
-
-        FileOutputStream out = null;
-
-        Log.d("GameInfo", "Enregister: " + Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES));
-
-        try {
-            out = new FileOutputStream(new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "BlendedImage.png"));
-            result.compress(Bitmap.CompressFormat.PNG, 100, out);
-            out.flush();
-        }
-        catch(IOException e) {
-            e.printStackTrace();
-        }
-        finally {
-            try {
-                out.close();
-            }
-            catch(IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     public interface OnOkPressedListener {

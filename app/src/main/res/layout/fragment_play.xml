@@ -11,58 +11,43 @@
         android:layout_height="match_parent">
         <ImageView
             android:id="@+id/raven"
+            android:scaleType="fitXY"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/orange2"/>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:src="@drawable/corbeau1"/>
 
-            <ImageView
-                android:id="@+id/orchardGreenFruit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/vert4"
-                android:layout_marginLeft="440dp"
-                android:scaleX="0.5"
-                android:scaleY="0.5"
-                android:scaleType="centerCrop"
-                android:layout_marginTop="15dp" />
+        <ImageView
+            android:id="@+id/orchardGreenFruit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/vert4"
+            android:layout_gravity="end" />
 
-            <ImageView
-                android:id="@+id/orchardVioletFruit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/violet4"
-                android:layout_marginLeft="285dp"
-                android:scaleX="0.5"
-                android:scaleY="0.5"
-                android:scaleType="centerCrop"
-                android:layout_marginTop="-35dp" />
+        <ImageView
+            android:id="@+id/orchardVioletFruit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/violet4"
+            android:layout_gravity="end" />
 
-            <ImageView
-                android:id="@+id/orchardOrangeFruit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/orange4"
-                android:scaleX="0.5"
-                android:scaleY="0.5"
-                android:scaleType="centerCrop"
-                android:layout_marginLeft="385dp"
-                android:layout_marginTop="170dp" />
+        <ImageView
+            android:id="@+id/orchardOrangeFruit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/orange4"
+            android:layout_gravity="end" />
 
-            <ImageView
-                android:id="@+id/orchardYellowFruit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/rouge4"
-                android:scaleX="0.5"
-                android:scaleY="0.5"
-                android:scaleType="centerCrop"
-                android:layout_marginLeft="220dp"
-                android:layout_marginTop="150dp" />
-        </RelativeLayout>
-
+        <ImageView
+            android:id="@+id/orchardYellowFruit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rouge4"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentLeft="false"
+            android:layout_gravity="end" />
 
         <ImageView
             android:id="@+id/harvestFruit"

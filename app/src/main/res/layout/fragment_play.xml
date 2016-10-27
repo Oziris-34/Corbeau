@@ -12,9 +12,9 @@
         <ImageView
             android:id="@+id/orchardBackground"
             android:scaleType="fitXY"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@mipmap/plateau2"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/plateau2"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -65,14 +65,12 @@
         </RelativeLayout>
         <ImageView
             android:id="@+id/raven"
-            android:scaleType="fitXY"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/corbeau_depart"/>
+            android:src="@drawable/corbeaudepart"/>
 
         <ImageView
             android:id="@+id/harvestFruit"
-            android:scaleType="fitXY"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -80,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
-            app:srcCompat="@mipmap/de2"
+            app:srcCompat="@drawable/de2"
             android:id="@+id/imageButton7"
             android:layout_gravity="bottom"
             android:elevation="10dp"

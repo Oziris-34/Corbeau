@@ -1,8 +1,13 @@
 package com.example.a34011_73_01.corbeau_project;
 
 import android.app.Activity;
+import android.graphics.Point;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +57,15 @@ public class PlayFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstance) {
         super.onActivityCreated(savedInstance);
+
+        Point screenSize = new Point();
+        Display display = getActivity().getWindowManager().getDefaultDisplay();
+        display.getSize(screenSize);
+
+        int displayWidth = screenSize.x;
+        int displayHeight = screenSize.y;
+
+
 
         game = new Game();
         game.setPlayer();
@@ -233,7 +247,7 @@ public class PlayFragment extends Fragment {
     private void updateRaven() {
         switch(game.getRavenPosition()) {
             case 8: {
-                raven.setImageDrawable(getResources().getDrawable(R.drawable.corbeau_gagne));
+                raven.setImageDrawable(getResources().getDrawable(R.drawable.corbeaugagne));
             }break;
 
             case 7: {
@@ -261,7 +275,7 @@ public class PlayFragment extends Fragment {
             }break;
 
             default: {
-                raven.setImageDrawable(getResources().getDrawable(R.drawable.corbeau_depart));
+                raven.setImageDrawable(getResources().getDrawable(R.drawable.corbeaudepart));
             }break;
         }
     }

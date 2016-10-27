@@ -1,13 +1,23 @@
 package com.example.a34011_73_01.corbeau_project;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * Created by 34011-73-09 on 27/10/2016.
@@ -48,6 +58,32 @@ public class GameInfoFragment extends Fragment {
                 }
             }
         });
+
+        Drawable orchard = getView().getResources().getDrawable(R.drawable.plateau2);
+        Drawable corback = getView().getResources().getDrawable(R.drawable.corbeau1);
+
+        Bitmap result = BitmapBlending.blend(((BitmapDrawable)orchard).getBitmap(), ((BitmapDrawable)corback).getBitmap());
+
+        FileOutputStream out = null;
+
+        Log.d("GameInfo", "Enregister: " + getContext().getFilesDir());
+
+        try {
+            out = new FileOutputStream(new File(getContext().getFilesDir(), "BlendedImage.png"));
+            result.compress(Bitmap.CompressFormat.PNG, 100, out);
+            out.flush();
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                out.close();
+            }
+            catch(IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public interface OnOkPressedListener {

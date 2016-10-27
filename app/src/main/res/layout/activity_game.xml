@@ -6,66 +6,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <FrameLayout
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/visibleFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <ImageView
-            android:id="@+id/orchardBackground"
-            android:scaleType="fitXY"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@mipmap/plateau2"/>
 
-        <ImageView
-            android:id="@+id/orchardYellowFruit"
-            android:scaleType="fitXY"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/rouge4"/>
-
-        <ImageView
-            android:id="@+id/orchardGreenFruit"
-            android:scaleType="fitXY"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/vert4"/>
-
-        <ImageView
-            android:id="@+id/orchardVioletFruit"
-            android:scaleType="fitXY"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/violet4"/>
-
-        <ImageView
-            android:id="@+id/orchardOrangeFruit"
-            android:scaleType="fitXY"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/orange4"/>
-
-        <ImageView
-            android:id="@+id/raven"
-            android:scaleType="fitXY"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/corbeau_depart"/>
-
-        <ImageView
-            android:id="@+id/harvestFruit"
-            android:scaleType="fitXY"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            app:srcCompat="@mipmap/de2"
-            android:id="@+id/imageButton7"
-            android:layout_gravity="bottom"
-            android:elevation="10dp"
-            android:layout_marginLeft="15dp" />
-
-    </FrameLayout>
+    </LinearLayout>
 </LinearLayout>

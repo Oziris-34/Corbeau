@@ -21,14 +21,17 @@ public class GameActivity extends AppCompatActivity implements GameInfoFragment.
 
     private FragmentManager fragmentManager;
     private GameInfoFragment gameInfoFragment;
+    private PlayFragment playFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        fragmentManager = getSupportFragmentManager();
         gameInfoFragment = new GameInfoFragment();
+        playFragment = new PlayFragment();
+
+        fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         fragmentTransaction.add(R.id.visibleFragment, gameInfoFragment);
@@ -38,13 +41,12 @@ public class GameActivity extends AppCompatActivity implements GameInfoFragment.
 
     @Override
     public void onOkPressed(String name) {
-        Toast toast = Toast.makeText(this, "Well done you have pressed the OK button: " + name, Toast.LENGTH_LONG);
-        toast.show();
-
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        fragmentTransaction.replace(R.id.visibleFragment, new PlayFragment());
+        fragmentTransaction.replace(R.id.visibleFragment, playFragment);
 
         fragmentTransaction.commit();
+
+        playFragment.setPlayerName(name);
     }
 }

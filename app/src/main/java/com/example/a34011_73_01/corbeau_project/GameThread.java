@@ -27,7 +27,7 @@ public class GameThread extends Thread {
 
     public GameThread(GameActivity activity) {
         this.activity = new WeakReference<GameActivity>(activity);
-        game = new Game(this.activity);
+        game = new Game();
     }
 
     public boolean isPlayerTurnDone() {

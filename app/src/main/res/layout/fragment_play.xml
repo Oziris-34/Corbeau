@@ -10,11 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <ImageView
-            android:id="@+id/orchardBackground"
-            android:scaleType="fitXY"
+            android:id="@+id/raven"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/plateau2"/>
+            android:src="@drawable/orange2"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -63,11 +62,7 @@
                 android:layout_marginLeft="220dp"
                 android:layout_marginTop="150dp" />
         </RelativeLayout>
-        <ImageView
-            android:id="@+id/raven"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/corbeaudepart"/>
+
 
         <ImageView
             android:id="@+id/harvestFruit"

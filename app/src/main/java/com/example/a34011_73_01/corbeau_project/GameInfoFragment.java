@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -66,10 +67,10 @@ public class GameInfoFragment extends Fragment {
 
         FileOutputStream out = null;
 
-        Log.d("GameInfo", "Enregister: " + getContext().getFilesDir());
+        Log.d("GameInfo", "Enregister: " + Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES));
 
         try {
-            out = new FileOutputStream(new File(getContext().getFilesDir(), "BlendedImage.png"));
+            out = new FileOutputStream(new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "BlendedImage.png"));
             result.compress(Bitmap.CompressFormat.PNG, 100, out);
             out.flush();
         }

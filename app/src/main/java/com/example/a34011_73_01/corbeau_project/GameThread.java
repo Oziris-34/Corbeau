@@ -27,7 +27,7 @@ public class GameThread extends Thread {
 
     public GameThread(GameActivity activity) {
         this.activity = new WeakReference<GameActivity>(activity);
-        game = new Game(this.activity);
+        game = new Game();
     }
 
     public boolean isPlayerTurnDone() {
@@ -48,6 +48,7 @@ public class GameThread extends Thread {
 
     @Override
     public void run() {
+        /*
         long oldTime = SystemClock.elapsedRealtime();
         long newTime = 0;
         long changeTime = 0;
@@ -138,6 +139,6 @@ public class GameThread extends Thread {
                 }
             }
         }
-
+*/
     }
 }

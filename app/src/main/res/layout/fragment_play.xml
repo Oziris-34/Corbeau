@@ -18,28 +18,28 @@
 
         <ImageView
             android:id="@+id/orchardGreenFruit"
-            android:layout_width="158dp"
+            android:layout_width="142dp"
             android:layout_height="wrap_content"
             android:src="@drawable/vert4"
             android:layout_gravity="end" />
 
         <ImageView
             android:id="@+id/orchardVioletFruit"
-            android:layout_width="325dp"
+            android:layout_width="316dp"
             android:layout_height="wrap_content"
             android:src="@drawable/violet4"
             android:layout_gravity="end" />
 
         <ImageView
             android:id="@+id/orchardOrangeFruit"
-            android:layout_width="186dp"
+            android:layout_width="177dp"
             android:layout_height="wrap_content"
             android:src="@drawable/orange4"
             android:layout_gravity="end" />
 
         <ImageView
             android:id="@+id/orchardYellowFruit"
-            android:layout_width="399dp"
+            android:layout_width="395dp"
             android:layout_height="wrap_content"
             android:src="@drawable/rouge4"
             android:layout_alignParentEnd="false"
@@ -55,14 +55,14 @@
             android:layout_height="wrap_content"/>
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="78dp"
+            android:layout_height="70dp"
             android:background="@null"
             app:srcCompat="@drawable/de2"
             android:id="@+id/imageButton7"
             android:layout_gravity="bottom"
             android:elevation="10dp"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="5dp"
             android:scaleX="0.5"
             android:scaleY="0.5" />
     </FrameLayout>

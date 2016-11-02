@@ -13,6 +13,8 @@ import java.util.Random;
 public class Game {
     private String playerName;
 
+    private int nbTurn;
+
     private int humanPlayerID;
 
     private int currentPlayer;
@@ -145,7 +147,20 @@ public class Game {
         this.playerHarvestedVioletFruit = playerHarvestedVioletFruit;
     }
 
+    public int getNbTurn() {
+        return nbTurn;
+    }
+
+    public void setNbTurn(int nbTurn) {
+        this.nbTurn = nbTurn;
+    }
+
     public Game() {
+        reset();
+    }
+
+    public void reset() {
+        nbTurn = 1;
         remainingGreenFruit = remainingOrangeFruit = remainingVioletFruit = remainingYellowFruit = 4;
         currentPlayer = 0;
         ravenPosition = 1;
@@ -167,6 +182,8 @@ public class Game {
 
     public int doTurn() {
         Log.d("Game", "PLayer_" + currentPlayer);
+
+        ++nbTurn;
 
         int result = launchDice();
 

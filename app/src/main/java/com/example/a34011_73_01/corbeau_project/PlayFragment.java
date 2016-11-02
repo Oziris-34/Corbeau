@@ -1,18 +1,13 @@
 package com.example.a34011_73_01.corbeau_project;
 
 import android.app.Activity;
-import android.graphics.Point;
-import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -57,15 +52,6 @@ public class PlayFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstance) {
         super.onActivityCreated(savedInstance);
-
-        Point screenSize = new Point();
-        Display display = getActivity().getWindowManager().getDefaultDisplay();
-        display.getSize(screenSize);
-
-        int displayWidth = screenSize.x;
-        int displayHeight = screenSize.y;
-
-
 
         game = new Game();
         game.setPlayer();
@@ -149,53 +135,69 @@ public class PlayFragment extends Fragment {
     }
 
     public void updateGame() {
-        updateOrchard();
         updateRaven();
+        updateOrchard();
         updateScore();
     }
 
     private void updateOrchard() {
+        Drawable greenFruitDrawable = null;
+        Drawable yellowFruitDrawable = null;
+        Drawable orangeFruitDrawable = null;
+        Drawable violetFruitDrawable = null;
+
+        Drawable plateau = raven.getDrawable();
+
         switch(game.getRemainingGreenFruit()) {
             case 4: {
-                greenFruit.setImageDrawable(getResources().getDrawable(R.drawable.vert4));
+                //greenFruit.setImageDrawable(getResources().getDrawable(R.drawable.vert4));
+                greenFruitDrawable = getResources().getDrawable(R.drawable.vert4);
             }break;
 
             case 3: {
-                greenFruit.setImageDrawable(getResources().getDrawable(R.drawable.vert3));
+                //greenFruit.setImageDrawable(getResources().getDrawable(R.drawable.vert3));
+                greenFruitDrawable = getResources().getDrawable(R.drawable.vert3);
             }break;
 
             case 2: {
-                greenFruit.setImageDrawable(getResources().getDrawable(R.drawable.vert2));
+                //greenFruit.setImageDrawable(getResources().getDrawable(R.drawable.vert2));
+                greenFruitDrawable = getResources().getDrawable(R.drawable.vert2);
             }break;
 
             case 1: {
-                greenFruit.setImageDrawable(getResources().getDrawable(R.drawable.vert1));
+                //greenFruit.setImageDrawable(getResources().getDrawable(R.drawable.vert1));
+                greenFruitDrawable = getResources().getDrawable(R.drawable.vert1);
             }break;
 
             default: {
-                greenFruit.setImageDrawable(null);
+                //greenFruit.setImageDrawable(null);
             }break;
         }
 
         switch(game.getRemainingOrangeFruit()) {
             case 4: {
-                orangeFruit.setImageDrawable(getResources().getDrawable(R.drawable.orange4));
+                //orangeFruit.setImageDrawable(getResources().getDrawable(R.drawable.orange4));
+                orangeFruitDrawable = getResources().getDrawable(R.drawable.orange4);
             }break;
 
             case 3: {
-                orangeFruit.setImageDrawable(getResources().getDrawable(R.drawable.orange3));
+                //orangeFruit.setImageDrawable(getResources().getDrawable(R.drawable.orange3));
+                orangeFruitDrawable = getResources().getDrawable(R.drawable.orange3);
             }break;
 
             case 2: {
-                orangeFruit.setImageDrawable(getResources().getDrawable(R.drawable.orange2));
+                //orangeFruit.setImageDrawable(getResources().getDrawable(R.drawable.orange2));
+                orangeFruitDrawable = getResources().getDrawable(R.drawable.orange2);
+
             }break;
 
             case 1: {
-                orangeFruit.setImageDrawable(getResources().getDrawable(R.drawable.orange1));
+                //orangeFruit.setImageDrawable(getResources().getDrawable(R.drawable.orange1));
+                orangeFruitDrawable = getResources().getDrawable(R.drawable.orange1);
             }break;
 
             default: {
-                orangeFruit.setImageDrawable(null);
+                //orangeFruit.setImageDrawable(null);
             }break;
         }
 
@@ -242,6 +244,9 @@ public class PlayFragment extends Fragment {
                 yellowFruit.setImageDrawable(null);
             }break;
         }
+
+        greenFruit.setImageDrawable(BitmapBlending.blend(this.getContext(), (BitmapDrawable)plateau, (BitmapDrawable)orangeFruitDrawable, 0, 0));
+        orangeFruit.setImageDrawable(BitmapBlending.blend(this.getContext(), (BitmapDrawable)plateau, (BitmapDrawable)orangeFruitDrawable, 0, 0));
     }
 
     private void updateRaven() {

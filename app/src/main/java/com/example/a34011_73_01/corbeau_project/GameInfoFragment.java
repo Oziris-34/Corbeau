@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -56,6 +57,10 @@ public class GameInfoFragment extends Fragment {
                 String text = editText.getText().toString();
                 if((text != null) && !text.trim().equals("")) {
                     listener.onOkPressed(text);
+                }
+                else {
+                    Toast message = Toast.makeText(getContext(), "Please enter text!", Toast.LENGTH_SHORT);
+                    message.show();
                 }
             }
         });

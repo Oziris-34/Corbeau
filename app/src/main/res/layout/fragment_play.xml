@@ -61,6 +61,8 @@
             app:srcCompat="@drawable/de2"
             android:id="@+id/imageButton7"
             android:layout_gravity="bottom"
+            android:maxWidth="10dp"
+            android:maxHeight="10dp"
             android:elevation="10dp"
             android:layout_marginLeft="15dp" />
     </FrameLayout>

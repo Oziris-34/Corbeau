@@ -1,31 +1,61 @@
 package com.example.a34011_73_01.corbeau_project;
 
+import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
-import android.graphics.Rect;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Shader;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.DrawableContainer;
+import android.support.v7.widget.DrawableUtils;
 
 /**
- * Created by 34011-73-09 on 27/10/2016.
+ * Created by 34011-73-09 on 02/11/2016.
  */
 
 public class BitmapBlending {
-    public static Bitmap blend(Bitmap bmp1, Bitmap bmp2) {
-        Bitmap result = null;
-
-        Rect bmp1Rect = new Rect(0, 0, bmp1.getWidth(), bmp1.getHeight());
-
-        Rect bmp2Rect = new Rect(0, 0, bmp2.getWidth(), bmp2.getHeight());
-
-        result = Bitmap.createBitmap(bmp1Rect.width(), bmp1Rect.height(), Bitmap.Config.ARGB_8888);
-
-        if(result != null) {
-            Canvas canvas = new Canvas(result);
-            canvas.drawBitmap(bmp1, bmp1Rect, bmp1Rect, new Paint(Paint.FILTER_BITMAP_FLAG));
-            canvas.drawBitmap(bmp1, bmp2Rect, bmp1Rect, new Paint(Paint.FILTER_BITMAP_FLAG));
+    public static Drawable blend(Context context, BitmapDrawable drawableBase, BitmapDrawable drawableToBlend, float right, float bottom) {
+        if((drawableBase == null) || (drawableToBlend == null)) {
+            return null;
         }
 
+        Bitmap bitmapBase = drawableBase.getBitmap();
+        Bitmap bitmapToBlend = drawableToBlend.getBitmap();
+
+        if((bitmapBase == null) || (bitmapToBlend == null)) {
+            return null;
+        }
+
+        int width = bitmapBase.getWidth();
+        int height = bitmapBase.getHeight();
+
+        Bitmap bitmapResult = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        bitmapResult.eraseColor(Color.argb(0, 0, 0, 0));
+
+        Paint basePaint = new Paint();
+        basePaint.setShader(new BitmapShader(bitmapBase, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP));
+        basePaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.ADD));
+
+        Paint toBlendPaint = new Paint();
+        toBlendPaint.setShader(new BitmapShader(bitmapToBlend, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP));
+        toBlendPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_ATOP));
+
+        Canvas canvas = new Canvas(bitmapResult);
+        canvas.drawRect(0, 0, width, height, basePaint);
+        canvas.drawRect(right * width, bottom * height, width, height, toBlendPaint);
+
+        Drawable result = new BitmapDrawable(context.getResources(), bitmapResult);
+        /*
+        bitmapBase.recycle();
+        bitmapToBlend.recycle();
+         */
         return result;
     }
 }

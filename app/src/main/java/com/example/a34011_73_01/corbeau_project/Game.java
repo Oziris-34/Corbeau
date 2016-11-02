@@ -165,7 +165,7 @@ public class Game {
         currentPlayer = ++currentPlayer % 2;
     }
 
-    public void doTurn() {
+    public int doTurn() {
         Log.d("Game", "PLayer_" + currentPlayer);
 
         int result = launchDice();
@@ -213,7 +213,7 @@ public class Game {
             }break;
         }
 
-        nextPlayer();
+        return result;
     }
 
     public boolean hasCorbackWon() {

@@ -23,15 +23,6 @@
         android:layout_toStartOf="@+id/quit" />
 
     <Button
-        android:text="@string/app_menu_button_quit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/quit"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
         android:text="@string/app_menu_button_newgame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,6 +31,15 @@
         android:layout_marginEnd="45dp"
         android:layout_marginBottom="15dp"
         android:layout_above="@+id/credit"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="@string/app_menu_button_quit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/quit"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 </RelativeLayout>

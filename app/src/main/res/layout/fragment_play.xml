@@ -14,32 +14,32 @@
             android:scaleType="fitXY"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/corbeau1"/>
+            android:src="@drawable/corbeaudepart"/>
 
         <ImageView
             android:id="@+id/orchardGreenFruit"
-            android:layout_width="wrap_content"
+            android:layout_width="158dp"
             android:layout_height="wrap_content"
             android:src="@drawable/vert4"
             android:layout_gravity="end" />
 
         <ImageView
             android:id="@+id/orchardVioletFruit"
-            android:layout_width="wrap_content"
+            android:layout_width="325dp"
             android:layout_height="wrap_content"
             android:src="@drawable/violet4"
             android:layout_gravity="end" />
 
         <ImageView
             android:id="@+id/orchardOrangeFruit"
-            android:layout_width="wrap_content"
+            android:layout_width="186dp"
             android:layout_height="wrap_content"
             android:src="@drawable/orange4"
             android:layout_gravity="end" />
 
         <ImageView
             android:id="@+id/orchardYellowFruit"
-            android:layout_width="wrap_content"
+            android:layout_width="399dp"
             android:layout_height="wrap_content"
             android:src="@drawable/rouge4"
             android:layout_alignParentEnd="false"
@@ -62,6 +62,8 @@
             android:id="@+id/imageButton7"
             android:layout_gravity="bottom"
             android:elevation="10dp"
-            android:layout_marginLeft="15dp" />
+            android:layout_marginLeft="15dp"
+            android:scaleX="0.5"
+            android:scaleY="0.5" />
     </FrameLayout>
 </LinearLayout>

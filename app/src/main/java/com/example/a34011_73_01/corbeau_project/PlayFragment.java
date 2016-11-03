@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -27,6 +28,8 @@ import java.util.zip.Inflater;
  */
 
 public class PlayFragment extends Fragment {
+
+    private MediaPlayer mediaPlayer;
 
     private Game game;
 
@@ -76,6 +79,8 @@ public class PlayFragment extends Fragment {
             public void onClick(View v) {
                 getActivity().recreate();
                 popupWindow.dismiss();
+                mediaPlayer.stop();
+                mediaPlayer.release();
             }
         });
 
@@ -85,6 +90,8 @@ public class PlayFragment extends Fragment {
             public void onClick(View v) {
                 getActivity().finish();
                 popupWindow.dismiss();
+                mediaPlayer.stop();
+                mediaPlayer.release();
             }
         });
 
@@ -94,6 +101,10 @@ public class PlayFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstance) {
         super.onActivityCreated(savedInstance);
+
+        mediaPlayer = MediaPlayer.create(getContext(), R.raw.bgm);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
 
         gameHandler = new Handler();
 
@@ -155,6 +166,8 @@ public class PlayFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+        mediaPlayer.stop();
+        mediaPlayer.release();
         popupWindow.isShowing();
         popupWindow.dismiss();
     }

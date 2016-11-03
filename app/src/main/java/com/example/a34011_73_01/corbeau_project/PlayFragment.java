@@ -5,9 +5,11 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +17,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.Toast;
+
+import java.util.zip.Inflater;
 
 /**
  * Created by 34011-73-09 on 27/10/2016.
@@ -36,6 +41,10 @@ public class PlayFragment extends Fragment {
 
     private ImageButton de;
 
+    private Handler gameHandler;
+
+    private PopupWindow popupWindow;
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -47,10 +56,15 @@ public class PlayFragment extends Fragment {
             throw new ClassCastException(activity.toString() + "must implement OnOkPressedListener");
         }
         */
+        game = new Game();
+        game.setPlayer();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance) {
+        Bundle bundle = this.getArguments();
+        game.setPlayerName(bundle.getString("playerName"));
+
         return inflater.inflate(R.layout.fragment_play, container, false);
     }
 
@@ -58,17 +72,7 @@ public class PlayFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstance) {
         super.onActivityCreated(savedInstance);
 
-        Point screenSize = new Point();
-        Display display = getActivity().getWindowManager().getDefaultDisplay();
-        display.getSize(screenSize);
-
-        int displayWidth = screenSize.x;
-        int displayHeight = screenSize.y;
-
-
-
-        game = new Game();
-        game.setPlayer();
+        gameHandler = new Handler();
 
         isGameFinished = false;
 
@@ -93,10 +97,25 @@ public class PlayFragment extends Fragment {
             Toast message = Toast.makeText(getContext(), "The computer begins!", Toast.LENGTH_SHORT);
             message.show();
 
-            game.doTurn();
+            de.setAlpha(0.0f);
 
-            message = Toast.makeText(getContext(), "It's your turn!", Toast.LENGTH_SHORT);
-            message.show();
+            gameHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    int result = game.doTurn();
+
+                    showTurnResult(result);
+
+                    updateGame();
+
+                    game.nextPlayer();
+
+                    Toast handlerMessage = Toast.makeText(getContext(), "It's your turn!", Toast.LENGTH_SHORT);
+                    handlerMessage.show();
+
+                    de.setAlpha(1.0f);
+                }
+            }, 3000);
         }
         else {
             Toast message = Toast.makeText(getContext(), "You Start!", Toast.LENGTH_SHORT);
@@ -104,14 +123,10 @@ public class PlayFragment extends Fragment {
         }
     }
 
-    public void setPlayerName(String name) {
-        if(game != null) {
-            game.setPlayerName(name);
-        }
-    }
-
     public void doTurn() {
-        game.doTurn(); //The player's turn
+        int result = game.doTurn(); //The player's turn
+
+        showTurnResult(result);
 
         updateGame();
 
@@ -123,29 +138,108 @@ public class PlayFragment extends Fragment {
 
             de.setAlpha(0.0f);
 
-            try {
-                Thread.sleep(2000);
+            game.nextPlayer();
+
+            gameHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    int result = game.doTurn();
+
+                    showTurnResult(result);
+
+                    updateGame();
+
+                    isGameFinished = game.isGameFinished() || game.hasCorbackWon();
+
+                    if(!isGameFinished) {
+                        game.nextPlayer();
+
+                        Toast handlerMessage = Toast.makeText(getContext(), "It's your turn!", Toast.LENGTH_SHORT);
+                        handlerMessage.show();
+                    }
+                    else {
+                        showEndGameMessage();
+                    }
+
+                    de.setAlpha(1.0f);
+                }
+            }, 3000);
+        }
+        else {
+            showEndGameMessage();
+        }
+    }
+
+    public void showTurnResult(int result) {
+        switch(result) {
+            case 1:
+            case 2:
+            case 3:
+            case 4: {
+                if(game.getCurrentPlayer() != game.getHumanPlayerID()) {
+                    Toast message = Toast.makeText(getContext(), "The computer picks a fruit!", Toast.LENGTH_SHORT);
+                    message.show();
+                }
+                else {
+                    Toast message = Toast.makeText(getContext(), "You pick a fruit!", Toast.LENGTH_SHORT);
+                    message.show();
+                }
+            }break;
+
+            case 5: {
+                if(game.getCurrentPlayer() != game.getHumanPlayerID()) {
+                    Toast message = Toast.makeText(getContext(), "the computer skips a turn!", Toast.LENGTH_SHORT);
+                    message.show();
+                }
+                else {
+                    Toast message = Toast.makeText(getContext(), "You skip a turn!", Toast.LENGTH_SHORT);
+                    message.show();
+                }
+            }break;
+
+            case 6: {
+                Toast message = Toast.makeText(getContext(), "The corback approaches the orchard!", Toast.LENGTH_SHORT);
+                message.show();
+            }break;
+        }
+    }
+
+    public void showEndGameMessage() {
+        if(game.isGameFinished() && !game.hasCorbackWon()) {
+            if(game.getCurrentPlayer() == game.getHumanPlayerID()) {
+                Toast message = Toast.makeText(getContext(), "The game is finished! You, " + game.getPlayerName() + ", win in " + game.getNbTurn() + " turns!", Toast.LENGTH_LONG);
+                message.show();
             }
-            catch(InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            game.doTurn();
-            updateGame();
-            de.setAlpha(1.0f);
-
-            isGameFinished = game.isGameFinished() || game.hasCorbackWon();
-
-            if(!isGameFinished) {
-                message = Toast.makeText(getContext(), "It's your turn!", Toast.LENGTH_SHORT);
+            else {
+                Toast message = Toast.makeText(getContext(), "The game is finished! The computer wins in " + game.getNbTurn() + " turns!", Toast.LENGTH_LONG);
                 message.show();
             }
         }
-
-        if(isGameFinished) {
-            Toast message = Toast.makeText(getContext(), "The game is finished!", Toast.LENGTH_LONG);
+        else if(!game.isGameFinished() && game.hasCorbackWon()) {
+            Toast message = Toast.makeText(getContext(), "Mwahahah! The corback wins in " + game.getNbTurn() + " turns!", Toast.LENGTH_LONG);
             message.show();
         }
+
+
+        popupWindow = new PopupWindow();
+        popupWindow.setContentView(LayoutInflater.from(this.getContext()).inflate(R.layout.popup_game, null,false));
+        popupWindow.showAtLocation(getView(), Gravity.CENTER, 0, 0);
+
+        Button buttonYes = (Button)popupWindow.getContentView().findViewById(R.id.buttonPopupYes);
+        buttonYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().recreate();
+            }
+        });
+
+        Button buttonNo = (Button)popupWindow.getContentView().findViewById(R.id.buttonPopupNo);
+        buttonNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finishActivity(0);
+            }
+        });
     }
 
     public void updateGame() {

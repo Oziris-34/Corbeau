@@ -12,13 +12,13 @@
         android:id="@+id/titreCreation"
         android:textStyle="bold"
         android:textSize="18sp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:textColor="@android:color/holo_blue_dark"
         android:layout_gravity="center" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="178dp">
+        android:layout_height="145dp">
 
         <TextView
             android:text="Cyril OLLIER"
@@ -65,13 +65,14 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/infoJeremi"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:id="@+id/plus"
             android:textColor="@android:color/holo_blue_dark"
             android:textStyle="bold" />
 
         <Button
             android:text="Site Web"
+            android:background="@drawable/button_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/infoCyril"
@@ -81,6 +82,7 @@
 
         <Button
             android:text="Site Web"
+            android:background="@drawable/button_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/infoJeremi"
@@ -110,6 +112,7 @@
 
     <Button
         android:text="Go Watch !"
+        android:background="@drawable/button_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/animationWeb"

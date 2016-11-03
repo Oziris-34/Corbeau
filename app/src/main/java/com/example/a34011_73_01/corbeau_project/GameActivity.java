@@ -43,10 +43,14 @@ public class GameActivity extends AppCompatActivity implements GameInfoFragment.
     public void onOkPressed(String name) {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
+        Bundle bundle = new Bundle();
+
+        bundle.putString("playerName", name);
+
+        playFragment.setArguments(bundle);
+
         fragmentTransaction.replace(R.id.visibleFragment, playFragment);
 
         fragmentTransaction.commit();
-
-        playFragment.setPlayerName(name);
     }
 }

@@ -1,22 +1,15 @@
 package com.example.a34011_73_01.corbeau_project;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Point;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
@@ -118,7 +111,7 @@ public class PlayFragment extends Fragment {
         });
 
         if(game.getCurrentPlayer() != game.getHumanPlayerID()) {
-            Toast message = Toast.makeText(getContext(), "The computer begins!", Toast.LENGTH_SHORT);
+            Toast message = Toast.makeText(getContext(), getContext().getString(R.string.computer_starts), Toast.LENGTH_SHORT);
             message.setGravity(Gravity.BOTTOM, 0, 0);
             message.show();
 
@@ -137,7 +130,7 @@ public class PlayFragment extends Fragment {
 
                     game.nextPlayer();
 
-                    Toast handlerMessage = Toast.makeText(getContext(), "It's your turn!", Toast.LENGTH_SHORT);
+                    Toast handlerMessage = Toast.makeText(getContext(), getContext().getString(R.string.player_turn), Toast.LENGTH_SHORT);
                     handlerMessage.setGravity(Gravity.BOTTOM, 0, 0);
                     handlerMessage.show();
 
@@ -147,7 +140,7 @@ public class PlayFragment extends Fragment {
             }, 3000);
         }
         else {
-            Toast message = Toast.makeText(getContext(), "You Start!", Toast.LENGTH_SHORT);
+            Toast message = Toast.makeText(getContext(), getContext().getString(R.string.player_starts), Toast.LENGTH_SHORT);
             message.setGravity(Gravity.BOTTOM, 0, 0);
             message.show();
         }
@@ -173,7 +166,7 @@ public class PlayFragment extends Fragment {
         isGameFinished = game.isGameFinished() || game.hasCorbackWon();
 
         if(!isGameFinished) {
-            final Toast message = Toast.makeText(getContext(), "It's the computer's turn!", Toast.LENGTH_SHORT);
+            final Toast message = Toast.makeText(getContext(), getContext().getString(R.string.computer_turn), Toast.LENGTH_SHORT);
             message.setGravity(Gravity.BOTTOM, 0, 0);
             message.show();
 
@@ -196,7 +189,7 @@ public class PlayFragment extends Fragment {
                     if(!isGameFinished) {
                         game.nextPlayer();
 
-                        Toast handlerMessage = Toast.makeText(getContext(), "It's your turn!", Toast.LENGTH_SHORT);
+                        Toast handlerMessage = Toast.makeText(getContext(), getContext().getString(R.string.player_turn), Toast.LENGTH_SHORT);
                         handlerMessage.setGravity(Gravity.BOTTOM, 0, 0);
                         handlerMessage.show();
                     }
@@ -218,29 +211,53 @@ public class PlayFragment extends Fragment {
         String message = "";
 
         switch(result) {
-            case 1:
-            case 2:
-            case 3:
-            case 4: {
+            case 1:{
                 if(game.getCurrentPlayer() != game.getHumanPlayerID()) {
-                    message = "The computer picks a fruit!";
+                    message = getContext().getString(R.string.computer_pick_green_fruit);
                 }
                 else {
-                    message = "You pick a fruit!";
+                    message = getContext().getString(R.string.player_pick_green_fruit);
+                }
+            }break;
+
+            case 2:{
+                if(game.getCurrentPlayer() != game.getHumanPlayerID()) {
+                    message = getContext().getString(R.string.computer_pick_orange_fruit);
+                }
+                else {
+                    message = getContext().getString(R.string.player_pick_orange_fruit);
+                }
+            }break;
+
+            case 3: {
+                if(game.getCurrentPlayer() != game.getHumanPlayerID()) {
+                    message = getContext().getString(R.string.computer_pick_violet_fruit);
+                }
+                else {
+                    message = getContext().getString(R.string.player_pick_violet_fruit);
+                }
+            }break;
+
+            case 4: {
+                if(game.getCurrentPlayer() != game.getHumanPlayerID()) {
+                    message = getContext().getString(R.string.computer_pick_red_fruit);
+                }
+                else {
+                    message = getContext().getString(R.string.player_pick_red_fruit);
                 }
             }break;
 
             case 5: {
                 if(game.getCurrentPlayer() != game.getHumanPlayerID()) {
-                    message = "The computer skips a turn!";
+                    message = getContext().getString(R.string.computer_skips_turn);
                 }
                 else {
-                    message = "You skip a turn!";
+                    message = getContext().getString(R.string.player_skips_turn);
                 }
             }break;
 
             case 6: {
-                message = "The corback approaches the orchard!";
+                message = getContext().getString(R.string.raven_approach);
             }break;
         }
 
@@ -297,22 +314,18 @@ public class PlayFragment extends Fragment {
         switch(game.getRemainingGreenFruit()) {
             case 4: {
                 greenFruit.setImageResource(R.drawable.vert4);
-                //greenFruit.setImageDrawable(getResources().getDrawable(R.drawable.vert4));
             }break;
 
             case 3: {
                 greenFruit.setImageResource(R.drawable.vert3);
-                //greenFruit.setImageDrawable(getResources().getDrawable(R.drawable.vert3));
             }break;
 
             case 2: {
                 greenFruit.setImageResource(R.drawable.vert2);
-                //greenFruit.setImageDrawable(getResources().getDrawable(R.drawable.vert2));
             }break;
 
             case 1: {
                 greenFruit.setImageResource(R.drawable.vert1);
-                //greenFruit.setImageDrawable(getResources().getDrawable(R.drawable.vert1));
             }break;
 
             default: {
@@ -324,22 +337,18 @@ public class PlayFragment extends Fragment {
         switch(game.getRemainingOrangeFruit()) {
             case 4: {
                 orangeFruit.setImageResource(R.drawable.orange4);
-                //orangeFruit.setImageDrawable(getResources().getDrawable(R.drawable.orange4));
             }break;
 
             case 3: {
                 orangeFruit.setImageResource(R.drawable.orange3);
-                //orangeFruit.setImageDrawable(getResources().getDrawable(R.drawable.orange3));
             }break;
 
             case 2: {
                 orangeFruit.setImageResource(R.drawable.orange2);
-                //orangeFruit.setImageDrawable(getResources().getDrawable(R.drawable.orange2));
             }break;
 
             case 1: {
                 orangeFruit.setImageResource(R.drawable.orange1);
-                //orangeFruit.setImageDrawable(getResources().getDrawable(R.drawable.orange1));
             }break;
 
             default: {
@@ -350,22 +359,18 @@ public class PlayFragment extends Fragment {
         switch(game.getRemainingVioletFruit()) {
             case 4: {
                 violetFruit.setImageResource(R.drawable.violet4);
-               // violetFruit.setImageDrawable(getResources().getDrawable(R.drawable.violet4));
             }break;
 
             case 3: {
                 violetFruit.setImageResource(R.drawable.violet3);
-                //violetFruit.setImageDrawable(getResources().getDrawable(R.drawable.violet3));
             }break;
 
             case 2: {
                 violetFruit.setImageResource(R.drawable.violet2);
-                //violetFruit.setImageDrawable(getResources().getDrawable(R.drawable.violet2));
             }break;
 
             case 1: {
                 violetFruit.setImageResource(R.drawable.violet1);
-                //violetFruit.setImageDrawable(getResources().getDrawable(R.drawable.violet1));
             }break;
 
             default: {
@@ -376,22 +381,18 @@ public class PlayFragment extends Fragment {
         switch(game.getRemainingYellowFruit()) {
             case 4: {
                 yellowFruit.setImageResource(R.drawable.rouge4);
-                //yellowFruit.setImageDrawable(getResources().getDrawable(R.drawable.rouge4));
             }break;
 
             case 3: {
                 yellowFruit.setImageResource(R.drawable.rouge3);
-                //yellowFruit.setImageDrawable(getResources().getDrawable(R.drawable.rouge3));
             }break;
 
             case 2: {
                 yellowFruit.setImageResource(R.drawable.rouge2);
-                //yellowFruit.setImageDrawable(getResources().getDrawable(R.drawable.rouge2));
             }break;
 
             case 1: {
                 yellowFruit.setImageResource(R.drawable.rouge1);
-                //yellowFruit.setImageDrawable(getResources().getDrawable(R.drawable.rouge1));
             }break;
 
             default: {
@@ -404,42 +405,34 @@ public class PlayFragment extends Fragment {
         switch(game.getRavenPosition()) {
             case 8: {
                 raven.setImageResource(R.drawable.corbeaugagne);
-                //raven.setImageDrawable(getResources().getDrawable(R.drawable.corbeaugagne));
             }break;
 
             case 7: {
                 raven.setImageResource(R.drawable.corbeau6);
-                //raven.setImageDrawable(getResources().getDrawable(R.drawable.corbeau6));
             }break;
 
             case 6: {
                 raven.setImageResource(R.drawable.corbeau5);
-                //raven.setImageDrawable(getResources().getDrawable(R.drawable.corbeau5));
             }break;
 
             case 5: {
                 raven.setImageResource(R.drawable.corbeau4);
-                raven.setImageDrawable(getResources().getDrawable(R.drawable.corbeau4));
             }break;
 
             case 4: {
                 raven.setImageResource(R.drawable.corbeau3);
-                //raven.setImageDrawable(getResources().getDrawable(R.drawable.corbeau3));
             }break;
 
             case 3: {
                 raven.setImageResource(R.drawable.corbeau2);
-                //raven.setImageDrawable(getResources().getDrawable(R.drawable.corbeau2));
             }break;
 
             case 2: {
                 raven.setImageResource(R.drawable.corbeau1);
-                //raven.setImageDrawable(getResources().getDrawable(R.drawable.corbeau1));
             }break;
 
             default: {
                 raven.setImageResource(R.drawable.corbeaudepart);
-                //raven.setImageDrawable(getResources().getDrawable(R.drawable.corbeaudepart));
             }break;
         }
     }

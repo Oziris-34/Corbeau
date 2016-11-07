@@ -18,7 +18,7 @@
 
         <ImageView
             android:id="@+id/orchardGreenFruit"
-            android:layout_width="108dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/vert4"
             android:layout_gravity="end" />
@@ -26,28 +26,16 @@
         <ImageView
             android:id="@+id/orchardVioletFruit"
 
-            android:layout_width="254dp"
+            android:layout_width="288dp"
             android:layout_height="wrap_content"
             android:src="@drawable/violet4"
             android:layout_gravity="end" />
 
         <ImageView
             android:id="@+id/orchardOrangeFruit"
-            android:layout_width="146dp"
+            android:layout_width="176dp"
             android:layout_height="wrap_content"
             android:src="@drawable/orange4"
-            android:layout_gravity="end" />
-
-        <ImageView
-            android:id="@+id/orchardYellowFruit"
-            android:layout_width="314dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/rouge4"
-            android:layout_alignParentEnd="false"
-            android:layout_alignParentRight="false"
-            android:layout_alignParentStart="false"
-            android:layout_alignParentTop="false"
-            android:layout_alignParentLeft="false"
             android:layout_gravity="end" />
 
         <ImageView
@@ -67,5 +55,17 @@
             android:elevation="10dp"
             android:scaleX="0.4"
             android:scaleY="0.4" />
+
+        <ImageView
+            android:id="@+id/orchardYellowFruit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rouge4"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentLeft="false"
+            android:layout_gravity="end" />
     </FrameLayout>
 </LinearLayout>

@@ -3,4 +3,28 @@
     <string name="app_menu_button_newgame">New Game</string>
     <string name="app_menu_button_credits">Credits</string>
     <string name="app_menu_button_quit">Quit Game</string>
+
+    <string name="computer_pick_red_fruit">The computer picks a red fruit!</string>
+    <string name="computer_pick_violet_fruit">The computer picks a violet fruit!</string>
+    <string name="computer_pick_green_fruit">The computer picks a green fruit!</string>
+    <string name="computer_pick_orange_fruit">The computer picks an orange fruit!</string>
+
+    <string name="player_pick_red_fruit">You pick a red fruit!</string>
+    <string name="player_pick_violet_fruit">You pick a violet fruit!</string>
+    <string name="player_pick_green_fruit">You pick a green fruit!</string>
+    <string name="player_pick_orange_fruit">You pick an orange fruit!</string>
+
+    <string name="computer_skips_turn">The computer skips a turn!</string>
+
+    <string name="player_skips_turn">You skip a turn!</string>
+
+    <string name="raven_approach">The corback approaches the orchard!</string>
+
+    <string name="computer_starts">The computer begins!</string>
+
+    <string name="player_starts">You Start!</string>
+
+    <string name="computer_turn">It\'s the computer\'s turn!</string>
+
+    <string name="player_turn">It\'s your turn!</string>
 </resources>

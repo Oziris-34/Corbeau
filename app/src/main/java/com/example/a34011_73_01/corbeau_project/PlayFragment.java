@@ -1,6 +1,7 @@
 package com.example.a34011_73_01.corbeau_project;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
@@ -49,16 +50,9 @@ public class PlayFragment extends Fragment {
     private PopupWindow popupWindow;
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        /*
-        try {
-            listener = (GameInfoFragment.OnOkPressedListener)activity;
-        }
-        catch(ClassCastException e) {
-            throw new ClassCastException(activity.toString() + "must implement OnOkPressedListener");
-        }
-        */
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
         game = new Game();
         game.setPlayer();
     }
@@ -79,8 +73,6 @@ public class PlayFragment extends Fragment {
             public void onClick(View v) {
                 getActivity().recreate();
                 popupWindow.dismiss();
-                mediaPlayer.stop();
-                mediaPlayer.release();
             }
         });
 
@@ -90,8 +82,6 @@ public class PlayFragment extends Fragment {
             public void onClick(View v) {
                 getActivity().finish();
                 popupWindow.dismiss();
-                mediaPlayer.stop();
-                mediaPlayer.release();
             }
         });
 
@@ -166,6 +156,7 @@ public class PlayFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+        mediaPlayer.setLooping(false);
         mediaPlayer.stop();
         mediaPlayer.release();
         popupWindow.isShowing();
@@ -284,6 +275,10 @@ public class PlayFragment extends Fragment {
         messageToast.setGravity(Gravity.BOTTOM, 0, 0);
         messageToast.show();
 
+        showPopupWindow();
+    }
+
+    public void showPopupWindow() {
         gameHandler.postDelayed(new Runnable() {
             @Override
             public void run() {

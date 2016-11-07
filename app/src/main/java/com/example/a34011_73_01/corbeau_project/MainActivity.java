@@ -16,16 +16,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.music);
-        mediaPlayer.setLooping(true);
-        mediaPlayer.start();
+        createMediaPlayer();
 
         Button newGameButton = (Button)findViewById(R.id.newGame);
         newGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                stopMediaPlayer();
                 Intent intent = new Intent(MainActivity.this, GameActivity.class);
-                mediaPlayer.stop();
                 startActivity(intent);
             }
         });
@@ -34,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         creditsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                stopMediaPlayer();
                 Intent intent = new Intent(MainActivity.this, Credit.class);
-                mediaPlayer.stop();
                 startActivity(intent);
             }
         });
@@ -44,9 +42,30 @@ public class MainActivity extends AppCompatActivity {
         quitGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer.stop();
+                stopMediaPlayer();
+                destroyMediaPlayer();
                 Process.killProcess(Process.myPid());
             }
         });
+    }
+
+    public void createMediaPlayer() {
+        mediaPlayer = MediaPlayer.create(this, R.raw.music);
+        if(mediaPlayer != null) {
+            mediaPlayer.setLooping(true);
+            mediaPlayer.start();
+        }
+    }
+
+    public void stopMediaPlayer() {
+        if(mediaPlayer != null) {
+            mediaPlayer.stop();
+        }
+    }
+
+    public void destroyMediaPlayer() {
+        if(mediaPlayer != null) {
+            mediaPlayer.release();
+        }
     }
 }

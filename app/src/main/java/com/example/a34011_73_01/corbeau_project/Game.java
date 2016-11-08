@@ -1,9 +1,5 @@
 package com.example.a34011_73_01.corbeau_project;
 
-import android.util.Log;
-import android.widget.Toast;
-
-import java.lang.ref.WeakReference;
 import java.util.Random;
 
 /**

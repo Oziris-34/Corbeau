@@ -22,15 +22,15 @@ public class Game {
 
     private int ravenPosition;
 
-    public String getPlayerName() {
+    String getPlayerName() {
         return playerName;
     }
 
-    public void setPlayerName(String playerName) {
+    void setPlayerName(String playerName) {
         this.playerName = playerName;
     }
 
-    public int getCurrentPlayer() {
+    int getCurrentPlayer() {
         return currentPlayer;
     }
 
@@ -38,7 +38,7 @@ public class Game {
         this.currentPlayer = currentPlayer;
     }
 
-    public int getHumanPlayerID() {
+    int getHumanPlayerID() {
         return humanPlayerID;
     }
 
@@ -46,7 +46,7 @@ public class Game {
         this.humanPlayerID = humanPlayerID;
     }
 
-    public int getRemainingYellowFruit() {
+    int getRemainingYellowFruit() {
         return remainingYellowFruit;
     }
 
@@ -54,7 +54,7 @@ public class Game {
         this.remainingYellowFruit = remainingYellowFruit;
     }
 
-    public int getRemainingOrangeFruit() {
+    int getRemainingOrangeFruit() {
         return remainingOrangeFruit;
     }
 
@@ -62,7 +62,7 @@ public class Game {
         this.remainingOrangeFruit = remainingOrangeFruit;
     }
 
-    public int getRemainingVioletFruit() {
+    int getRemainingVioletFruit() {
         return remainingVioletFruit;
     }
 
@@ -70,7 +70,7 @@ public class Game {
         this.remainingVioletFruit = remainingVioletFruit;
     }
 
-    public int getRemainingGreenFruit() {
+    int getRemainingGreenFruit() {
         return remainingGreenFruit;
     }
 
@@ -78,7 +78,7 @@ public class Game {
         this.remainingGreenFruit = remainingGreenFruit;
     }
 
-    public int getRavenPosition() {
+    int getRavenPosition() {
         return ravenPosition;
     }
 
@@ -90,7 +90,7 @@ public class Game {
         ravenPosition++;
     }
 
-    public int getNbTurn() {
+    int getNbTurn() {
         return nbTurn;
     }
 
@@ -98,32 +98,32 @@ public class Game {
         this.nbTurn = nbTurn;
     }
 
-    public Game() {
+    Game() {
         reset();
     }
 
-    public void reset() {
+    void reset() {
         nbTurn = 1;
         remainingGreenFruit = remainingOrangeFruit = remainingVioletFruit = remainingYellowFruit = 4;
         currentPlayer = 0;
         ravenPosition = 1;
     }
 
-    public void setPlayer() {
+    void setPlayer() {
         Random random = new Random();
         humanPlayerID = random.nextInt(2);
     }
 
-    public int launchDice() {
+    int launchDice() {
         Random random = new Random();
         return random.nextInt(6) + 1;
     }
 
-    public void nextPlayer() {
+    void nextPlayer() {
         currentPlayer = ++currentPlayer % 2;
     }
 
-    public int doTurn() {
+    int doTurn() {
         ++nbTurn;
 
         int result = launchDice();
@@ -155,11 +155,11 @@ public class Game {
         return result;
     }
 
-    public boolean hasCorbackWon() {
+    boolean hasCorbackWon() {
         return (ravenPosition >= 8);
     }
 
-    public boolean isTreeEmpty() {
+    boolean isTreeEmpty() {
         boolean isYellowTreeEmpty = remainingYellowFruit <= 0;
         boolean isGreenTreeEmpty = remainingGreenFruit <= 0;
         boolean isVioletTreeEmpty = remainingVioletFruit <= 0;

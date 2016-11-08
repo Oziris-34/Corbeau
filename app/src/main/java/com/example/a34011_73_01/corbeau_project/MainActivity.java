@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void createMediaPlayer() {
+    private void createMediaPlayer() {
         mediaPlayer = MediaPlayer.create(this, R.raw.music);
         if(mediaPlayer != null) {
             mediaPlayer.setLooping(true);
@@ -57,13 +57,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void stopMediaPlayer() {
+    private void stopMediaPlayer() {
         if(mediaPlayer != null) {
             mediaPlayer.stop();
         }
     }
 
-    public void destroyMediaPlayer() {
+    private void destroyMediaPlayer() {
         if(mediaPlayer != null) {
             mediaPlayer.release();
         }

@@ -193,7 +193,6 @@ public class Game {
                 if(currentPlayer == humanPlayerID) {
                     ++playerHarvestedGreenFruit;
                 }
-                Log.d("Game", "Green!");
             }break;
 
             case 2: {
@@ -201,7 +200,6 @@ public class Game {
                 if(currentPlayer == humanPlayerID) {
                     ++playerHarvestedOrangeFruit;
                 }
-                Log.d("Game", "Orange!");
             }break;
 
             case 3: {
@@ -209,7 +207,6 @@ public class Game {
                 if(currentPlayer == humanPlayerID) {
                     ++playerHarvestedVioletFruit;
                 }
-                Log.d("Game", "Violet!");
             }break;
 
             case 4: {
@@ -217,16 +214,13 @@ public class Game {
                 if(currentPlayer == humanPlayerID) {
                     ++playerHarvestedYellowFruit;
                 }
-                Log.d("Game", "Yellow!");
             }break;
 
             case 5: {
-                Log.d("Game", "Skip turn!");
             }break;
 
             case 6: {
                 ++ravenPosition;
-                Log.d("Game", "Raven!");
             }break;
         }
 
@@ -237,7 +231,7 @@ public class Game {
         return (ravenPosition >= 8);
     }
 
-    public boolean isGameFinished() {
+    public boolean isTreeEmpty() {
         boolean isYellowTreeEmpty = remainingYellowFruit <= 0;
         boolean isGreenTreeEmpty = remainingGreenFruit <= 0;
         boolean isVioletTreeEmpty = remainingVioletFruit <= 0;

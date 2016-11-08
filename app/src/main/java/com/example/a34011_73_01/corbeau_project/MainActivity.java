@@ -1,6 +1,7 @@
 package com.example.a34011_73_01.corbeau_project;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Process;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,15 +10,19 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+    private MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        createMediaPlayer();
+
         Button newGameButton = (Button)findViewById(R.id.newGame);
         newGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                stopMediaPlayer();
                 Intent intent = new Intent(MainActivity.this, GameActivity.class);
                 startActivity(intent);
             }
@@ -27,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         creditsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                stopMediaPlayer();
                 Intent intent = new Intent(MainActivity.this, Credit.class);
                 startActivity(intent);
             }
@@ -36,8 +42,30 @@ public class MainActivity extends AppCompatActivity {
         quitGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                stopMediaPlayer();
+                destroyMediaPlayer();
                 Process.killProcess(Process.myPid());
             }
         });
+    }
+
+    public void createMediaPlayer() {
+        mediaPlayer = MediaPlayer.create(this, R.raw.music);
+        if(mediaPlayer != null) {
+            mediaPlayer.setLooping(true);
+            mediaPlayer.start();
+        }
+    }
+
+    public void stopMediaPlayer() {
+        if(mediaPlayer != null) {
+            mediaPlayer.stop();
+        }
+    }
+
+    public void destroyMediaPlayer() {
+        if(mediaPlayer != null) {
+            mediaPlayer.release();
+        }
     }
 }

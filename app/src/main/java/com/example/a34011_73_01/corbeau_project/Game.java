@@ -1,9 +1,5 @@
 package com.example.a34011_73_01.corbeau_project;
 
-import android.util.Log;
-import android.widget.Toast;
-
-import java.lang.ref.WeakReference;
 import java.util.Random;
 
 /**
@@ -18,11 +14,6 @@ public class Game {
     private int humanPlayerID;
 
     private int currentPlayer;
-
-    private int playerHarvestedGreenFruit;
-    private int playerHarvestedOrangeFruit;
-    private int playerHarvestedYellowFruit;
-    private int playerHarvestedVioletFruit;
 
     private int remainingYellowFruit;
     private int remainingOrangeFruit;
@@ -63,20 +54,12 @@ public class Game {
         this.remainingYellowFruit = remainingYellowFruit;
     }
 
-    public void decRemainingYellowFruit() {
-        remainingYellowFruit--;
-    }
-
     public int getRemainingOrangeFruit() {
         return remainingOrangeFruit;
     }
 
     public void setRemainingOrangeFruit(int remainingOrangeFruit) {
         this.remainingOrangeFruit = remainingOrangeFruit;
-    }
-
-    public void decRemainingOrangeFruit() {
-        remainingOrangeFruit--;
     }
 
     public int getRemainingVioletFruit() {
@@ -87,20 +70,12 @@ public class Game {
         this.remainingVioletFruit = remainingVioletFruit;
     }
 
-    public void decRemainingVioletFruit() {
-        remainingVioletFruit--;
-    }
-
     public int getRemainingGreenFruit() {
         return remainingGreenFruit;
     }
 
     public void setRemainingGreenFruit(int remainingGreenFruit) {
         this.remainingGreenFruit = remainingGreenFruit;
-    }
-
-    public void decRemainingGreenFruit() {
-        remainingGreenFruit--;
     }
 
     public int getRavenPosition() {
@@ -113,38 +88,6 @@ public class Game {
 
     public void incRavenPosition() {
         ravenPosition++;
-    }
-
-    public int getPlayerHarvestedGreenFruit() {
-        return playerHarvestedGreenFruit;
-    }
-
-    public void setPlayerHarvestedGreenFruit(int playerHarvestedGreenFruit) {
-        this.playerHarvestedGreenFruit = playerHarvestedGreenFruit;
-    }
-
-    public int getPlayerHarvestedOrangeFruit() {
-        return playerHarvestedOrangeFruit;
-    }
-
-    public void setPlayerHarvestedOrangeFruit(int playerHarvestedOrangeFruit) {
-        this.playerHarvestedOrangeFruit = playerHarvestedOrangeFruit;
-    }
-
-    public int getPlayerHarvestedYellowFruit() {
-        return playerHarvestedYellowFruit;
-    }
-
-    public void setPlayerHarvestedYellowFruit(int playerHarvestedYellowFruit) {
-        this.playerHarvestedYellowFruit = playerHarvestedYellowFruit;
-    }
-
-    public int getPlayerHarvestedVioletFruit() {
-        return playerHarvestedVioletFruit;
-    }
-
-    public void setPlayerHarvestedVioletFruit(int playerHarvestedVioletFruit) {
-        this.playerHarvestedVioletFruit = playerHarvestedVioletFruit;
     }
 
     public int getNbTurn() {
@@ -181,39 +124,24 @@ public class Game {
     }
 
     public int doTurn() {
-        Log.d("Game", "PLayer_" + currentPlayer);
-
         ++nbTurn;
 
         int result = launchDice();
-
         switch(result) {
             case 1: {
                 --remainingGreenFruit;
-                if(currentPlayer == humanPlayerID) {
-                    ++playerHarvestedGreenFruit;
-                }
             }break;
 
             case 2: {
                 --remainingOrangeFruit;
-                if(currentPlayer == humanPlayerID) {
-                    ++playerHarvestedOrangeFruit;
-                }
             }break;
 
             case 3: {
                 --remainingVioletFruit;
-                if(currentPlayer == humanPlayerID) {
-                    ++playerHarvestedVioletFruit;
-                }
             }break;
 
             case 4: {
                 --remainingYellowFruit;
-                if(currentPlayer == humanPlayerID) {
-                    ++playerHarvestedYellowFruit;
-                }
             }break;
 
             case 5: {

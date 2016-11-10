@@ -152,7 +152,7 @@ public class PlayFragment extends Fragment {
         newGamePopupWindow.dismiss();
     }
 
-    public void doTurn() {
+    private void doTurn() {
         int result = game.doTurn(); //The player's turn
         showTurnResultMessage(result);
 
@@ -195,7 +195,7 @@ public class PlayFragment extends Fragment {
         }
     }
 
-    public Toast showToast(String message) {
+    private Toast showToast(String message) {
         Toast messageToast = Toast.makeText(getContext(), message, Toast.LENGTH_SHORT);
         messageToast.setGravity(Gravity.BOTTOM, 0, 0);
         messageToast.show();
@@ -203,7 +203,7 @@ public class PlayFragment extends Fragment {
         return messageToast;
     }
 
-    public void showTurnResultMessage(int result) {
+    private void showTurnResultMessage(int result) {
         String message = "";
 
         switch(result) {
@@ -267,7 +267,7 @@ public class PlayFragment extends Fragment {
         }, 1000);
     }
 
-    public void showEndGameMessage() {
+    private void showEndGameMessage() {
         String message = "";
 
         if(game.isTreeEmpty() && !game.hasCorbackWon()) {
@@ -287,7 +287,7 @@ public class PlayFragment extends Fragment {
         showPopupWindow();
     }
 
-    public void showPopupWindow() {
+    private void showPopupWindow() {
         gameAsyncHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -296,7 +296,7 @@ public class PlayFragment extends Fragment {
         }, 4000);
     }
 
-    public void updateGameView() {
+    private void updateGameView() {
         updateRavenPosition();
         updateOrchardView();
     }

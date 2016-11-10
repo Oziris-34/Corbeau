@@ -1,16 +1,12 @@
 package com.example.a34011_73_01.corbeau_project;
 
-import android.util.Log;
-import android.widget.Toast;
-
-import java.lang.ref.WeakReference;
 import java.util.Random;
 
 /**
  * Created by 34011-73-09 on 25/10/2016.
  */
 
-public class Game {
+class Game {
     private String playerName;
 
     private int nbTurn;
@@ -19,11 +15,6 @@ public class Game {
 
     private int currentPlayer;
 
-    private int playerHarvestedGreenFruit;
-    private int playerHarvestedOrangeFruit;
-    private int playerHarvestedYellowFruit;
-    private int playerHarvestedVioletFruit;
-
     private int remainingYellowFruit;
     private int remainingOrangeFruit;
     private int remainingVioletFruit;
@@ -31,15 +22,15 @@ public class Game {
 
     private int ravenPosition;
 
-    public String getPlayerName() {
+    String getPlayerName() {
         return playerName;
     }
 
-    public void setPlayerName(String playerName) {
+    void setPlayerName(String playerName) {
         this.playerName = playerName;
     }
 
-    public int getCurrentPlayer() {
+    int getCurrentPlayer() {
         return currentPlayer;
     }
 
@@ -47,7 +38,7 @@ public class Game {
         this.currentPlayer = currentPlayer;
     }
 
-    public int getHumanPlayerID() {
+    int getHumanPlayerID() {
         return humanPlayerID;
     }
 
@@ -55,7 +46,7 @@ public class Game {
         this.humanPlayerID = humanPlayerID;
     }
 
-    public int getRemainingYellowFruit() {
+    int getRemainingYellowFruit() {
         return remainingYellowFruit;
     }
 
@@ -63,11 +54,7 @@ public class Game {
         this.remainingYellowFruit = remainingYellowFruit;
     }
 
-    public void decRemainingYellowFruit() {
-        remainingYellowFruit--;
-    }
-
-    public int getRemainingOrangeFruit() {
+    int getRemainingOrangeFruit() {
         return remainingOrangeFruit;
     }
 
@@ -75,11 +62,7 @@ public class Game {
         this.remainingOrangeFruit = remainingOrangeFruit;
     }
 
-    public void decRemainingOrangeFruit() {
-        remainingOrangeFruit--;
-    }
-
-    public int getRemainingVioletFruit() {
+    int getRemainingVioletFruit() {
         return remainingVioletFruit;
     }
 
@@ -87,11 +70,7 @@ public class Game {
         this.remainingVioletFruit = remainingVioletFruit;
     }
 
-    public void decRemainingVioletFruit() {
-        remainingVioletFruit--;
-    }
-
-    public int getRemainingGreenFruit() {
+    int getRemainingGreenFruit() {
         return remainingGreenFruit;
     }
 
@@ -99,11 +78,7 @@ public class Game {
         this.remainingGreenFruit = remainingGreenFruit;
     }
 
-    public void decRemainingGreenFruit() {
-        remainingGreenFruit--;
-    }
-
-    public int getRavenPosition() {
+    int getRavenPosition() {
         return ravenPosition;
     }
 
@@ -115,39 +90,7 @@ public class Game {
         ravenPosition++;
     }
 
-    public int getPlayerHarvestedGreenFruit() {
-        return playerHarvestedGreenFruit;
-    }
-
-    public void setPlayerHarvestedGreenFruit(int playerHarvestedGreenFruit) {
-        this.playerHarvestedGreenFruit = playerHarvestedGreenFruit;
-    }
-
-    public int getPlayerHarvestedOrangeFruit() {
-        return playerHarvestedOrangeFruit;
-    }
-
-    public void setPlayerHarvestedOrangeFruit(int playerHarvestedOrangeFruit) {
-        this.playerHarvestedOrangeFruit = playerHarvestedOrangeFruit;
-    }
-
-    public int getPlayerHarvestedYellowFruit() {
-        return playerHarvestedYellowFruit;
-    }
-
-    public void setPlayerHarvestedYellowFruit(int playerHarvestedYellowFruit) {
-        this.playerHarvestedYellowFruit = playerHarvestedYellowFruit;
-    }
-
-    public int getPlayerHarvestedVioletFruit() {
-        return playerHarvestedVioletFruit;
-    }
-
-    public void setPlayerHarvestedVioletFruit(int playerHarvestedVioletFruit) {
-        this.playerHarvestedVioletFruit = playerHarvestedVioletFruit;
-    }
-
-    public int getNbTurn() {
+    int getNbTurn() {
         return nbTurn;
     }
 
@@ -155,89 +98,68 @@ public class Game {
         this.nbTurn = nbTurn;
     }
 
-    public Game() {
+    Game() {
         reset();
     }
 
-    public void reset() {
+    private void reset() {
         nbTurn = 1;
         remainingGreenFruit = remainingOrangeFruit = remainingVioletFruit = remainingYellowFruit = 4;
         currentPlayer = 0;
         ravenPosition = 1;
     }
 
-    public void setPlayer() {
+    void setPlayer() {
         Random random = new Random();
         humanPlayerID = random.nextInt(2);
     }
 
-    public int launchDice() {
+    private int launchDice() {
         Random random = new Random();
         return random.nextInt(6) + 1;
     }
 
-    public void nextPlayer() {
+    void nextPlayer() {
         currentPlayer = ++currentPlayer % 2;
     }
 
-    public int doTurn() {
-        Log.d("Game", "PLayer_" + currentPlayer);
-
+    int doTurn() {
         ++nbTurn;
 
         int result = launchDice();
-
         switch(result) {
             case 1: {
                 --remainingGreenFruit;
-                if(currentPlayer == humanPlayerID) {
-                    ++playerHarvestedGreenFruit;
-                }
-                Log.d("Game", "Green!");
             }break;
 
             case 2: {
                 --remainingOrangeFruit;
-                if(currentPlayer == humanPlayerID) {
-                    ++playerHarvestedOrangeFruit;
-                }
-                Log.d("Game", "Orange!");
             }break;
 
             case 3: {
                 --remainingVioletFruit;
-                if(currentPlayer == humanPlayerID) {
-                    ++playerHarvestedVioletFruit;
-                }
-                Log.d("Game", "Violet!");
             }break;
 
             case 4: {
                 --remainingYellowFruit;
-                if(currentPlayer == humanPlayerID) {
-                    ++playerHarvestedYellowFruit;
-                }
-                Log.d("Game", "Yellow!");
             }break;
 
             case 5: {
-                Log.d("Game", "Skip turn!");
             }break;
 
             case 6: {
                 ++ravenPosition;
-                Log.d("Game", "Raven!");
             }break;
         }
 
         return result;
     }
 
-    public boolean hasCorbackWon() {
+    boolean hasCorbackWon() {
         return (ravenPosition >= 8);
     }
 
-    public boolean isGameFinished() {
+    boolean isTreeEmpty() {
         boolean isYellowTreeEmpty = remainingYellowFruit <= 0;
         boolean isGreenTreeEmpty = remainingGreenFruit <= 0;
         boolean isVioletTreeEmpty = remainingVioletFruit <= 0;

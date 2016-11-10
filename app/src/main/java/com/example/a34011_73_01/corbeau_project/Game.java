@@ -6,7 +6,7 @@ import java.util.Random;
  * Created by 34011-73-09 on 25/10/2016.
  */
 
-public class Game {
+class Game {
     private String playerName;
 
     private int nbTurn;
@@ -102,7 +102,7 @@ public class Game {
         reset();
     }
 
-    void reset() {
+    private void reset() {
         nbTurn = 1;
         remainingGreenFruit = remainingOrangeFruit = remainingVioletFruit = remainingYellowFruit = 4;
         currentPlayer = 0;
@@ -114,7 +114,7 @@ public class Game {
         humanPlayerID = random.nextInt(2);
     }
 
-    int launchDice() {
+    private int launchDice() {
         Random random = new Random();
         return random.nextInt(6) + 1;
     }
